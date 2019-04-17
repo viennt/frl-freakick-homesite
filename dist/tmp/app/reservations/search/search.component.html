@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-4">
+            <ul class="nav nav-tabs">
+                <li [class.active]="typeParam === searchingType[searchingType.field]">
+                    <a (click)="goToCourtsTab()">Fields</a>
+                </li>
+                <li [class.active]="typeParam === searchingType[searchingType.class]">
+                    <a (click)="goToClassesTab()">Classes</a>
+                </li>
+                <li [class.active]="typeParam === searchingType[searchingType.facility]">
+                    <a (click)="goToFacilitiesTab()">Facilities</a>
+                </li>
+                <li [class.active]="typeParam === searchingType[searchingType.event]">
+                    <a (click)="goToEventsTab()">Events</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!-- Searching courts results -->
+<frk-received-courts *ngIf="isShownReceivedCourts"
+    [availableSports]="availableSports"
+    [paginationPage]="pageParam"
+    [userLocation]="userLocation">
+</frk-received-courts>
+
+<!-- Searching classes results -->
+<frk-received-classes *ngIf="isShownReceivedClasses"
+    [availableSports]="availableSports"
+    [availableGroups]="availableGroups"
+    [keyword]="keywordParam"
+    [paginationPage]="pageParam"
+    [userLocation]="userLocation">
+</frk-received-classes>
+
+<!-- Searching facilities results -->
+<frk-received-facilities *ngIf="isShownReceivedFacilities"
+    [availableSports]="availableSports"
+    [keyword]="keywordParam"
+    [paginationPage]="pageParam"
+    [userLocation]="userLocation">
+</frk-received-facilities>
+
+<frk-received-events *ngIf="isShownReceivedEvents"
+    [keyword]="keywordParam"
+    [paginationPage]="pageParam"
+    [userLocation]="userLocation">
+</frk-received-events>
+
+<div class="container loading"
+     *ngIf="!isShownReceivedCourts && !isShownReceivedClasses
+     && !isShownReceivedFacilities && !isShownReceivedEvents">
+    <frk-loading-circle></frk-loading-circle>
+</div>

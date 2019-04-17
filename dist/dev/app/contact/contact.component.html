@@ -1,0 +1,82 @@
+<div class="ct-contact">
+    <sd-navbar class="contact"></sd-navbar>
+    <section>
+        <div class="col-xs-12">
+            <div class="ct-body">
+                <div class="row">
+                    <div class="ct-background-header">
+                        <div class="col-sm-6 padding-0">
+                            <div class="section-1">
+                                <h2>Contact us</h2>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 padding-0 hidden-xs">
+                            <div class="section-2">
+                                <img alt="Brand" src="./assets/images/logo/freakick_logo_light.png">
+                                <div class="uil-ring-css"><div></div></div>
+                            </div>
+                            <!-- <div class="section-5">
+                                <i class="fa fa-paper-plane-o"></i>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <div class="col-md-5 hidden-xs">
+                            <div class="row">
+                                <div class="section-3">
+                                    <h3>How can we help?</h3>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="row">
+                                <div class="section-4">
+                                    <form #contactForm="ngForm" novalidate>
+                                        <div class="col-md-8">
+                                            <div class="ct-header-form">
+                                                <h4>Message us</h4>
+                                            </div>
+                                            <div class="form-group padding-top-bot-5" [class.has-error]="!name.valid && name.dirty">
+                                                <input id="input-name" placeholder="Name" class="form-control input-lg"
+                                                        name="name" required minlength="1" #name="ngModel"
+                                                        [(ngModel)]="contactName">
+                                                <span *ngIf="!name.valid && name.dirty" class="help-block">Please fill your name</span>
+                                            </div>
+                                            <div class="form-group padding-top-bot-5" [class.has-error]="!email.valid && email.dirty">
+                                                <input type="email" id="input-email"
+                                                        name="email" required minlength="1" #email="ngModel"
+                                                        placeholder="Email address" class="form-control input-lg"
+                                                        pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                                                        [(ngModel)]="contactEmail">
+                                                <span *ngIf="!email.valid && email.dirty" class="help-block">Please fill valid email</span>
+                                            </div>
+                                            <div class="form-group padding-top-bot-5" [class.has-error]="!message.valid && message.dirty">
+                                                <textarea name="message" type="text" placeholder="Message"
+                                                            id="input-message" class="form-control input-lg"
+                                                            required rows="3" #message="ngModel"
+                                                            [(ngModel)]="contactMessage"></textarea>
+                                                <span *ngIf="!message.valid && message.dirty" class="help-block">Message is required</span>
+                                            </div>
+                                            <div class="ct-button">
+                                                <button id="input-submit" class="btn btn-circle-o"
+                                                    (click)="sendMessageToSubmitContactInfo()"
+                                                    [disabled]="contactForm.invalid || isLoading">
+                                                    <i *ngIf="!isLoading" class="fa fa-send"></i>
+                                                    <i *ngIf="isLoading" class="fa fa-spin fa-spinner"></i> Message @FreakickSupport
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <sd-new-footer></sd-new-footer>
+</div>
+<frk-notification-success-popup #successContactPopup (success)="success()"></frk-notification-success-popup>

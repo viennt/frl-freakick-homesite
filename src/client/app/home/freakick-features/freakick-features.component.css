@@ -1,0 +1,272 @@
+.feature.social {
+    background-color: #100910;
+    color: #ffffff;
+}
+.feature.leagues {
+    background-color: #fff1de;
+}
+.feature.reservations {
+    background-color: #e3f2fd;
+}
+.feature.guild {
+    padding: 0;
+    display: block;
+    cursor: pointer;
+    background: url(./assets/images/home-page/HomePageGuildBg.png) center center no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+.feature.distrikt {
+    padding: 0;
+    display: block;
+    cursor: pointer;
+    background: #000000;
+}
+
+section {
+    padding: 60px 0;
+    display: block;
+}
+@media (min-width: 768px) {
+    section {
+        padding: 80px 0;
+    }
+}
+
+.feature-content .sub-content {
+    height: 470px;
+    padding: 100px 0;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.feature-content .sub-content.show-children {
+    padding: 0;
+}
+
+.social .sub-content,
+.leagues .sub-content,
+.reservations .sub-content {
+    text-align: left;
+}
+
+@media (max-width: 767px), (max-device-width: 767px) {
+    .feature-content .sub-content {
+        height: auto;
+        padding: 30px 0 0 0;
+        text-align: center;
+    }
+}
+
+.feature-content .sub-content .title {
+    font-weight: 300;
+    font-size: 21px;
+    line-height: 1.3;
+    padding: 10px 0;
+}
+
+.feature-content .sub-content .description {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.3;
+}
+
+.feature-content .sub-content .sub-description {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.3;
+    padding: 10px 0;
+}
+
+@media (max-width: 767px), (max-device-width: 767px) {
+    .feature-content .sub-content .description {
+        font-size: 26px;
+    }
+}
+
+.feature-content .sub-content .learn-more {
+    cursor: pointer;
+    color: #4a8fe7;
+    font-weight: 500;
+    text-decoration: none;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.feature-content .sub-content .learn-more:hover {
+    color: #333333;
+}
+
+.feature-content .sub-content .children {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.3;
+    padding: 15px 0 0 0;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    color: #787878;
+}
+
+.feature-content .sub-content .show-less {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.3;
+    padding: 15px 0 0 0;
+    color: #787878;
+    cursor: pointer;
+}
+
+.feature-content .sub-content .children:hover,
+.feature-content .sub-content .show-less:hover  {
+    color: #333333;
+}
+
+/* Social section */
+.social .image-content {
+    height: 470px;
+    position: relative;
+    margin: auto;
+}
+
+.social .image-content .phone {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: url(./assets/images/home-page/social.png) center center no-repeat;
+    background-size: contain;
+}
+
+.social .phone .learn-more.sports {
+    position: absolute;
+    top: calc(50% + 7em);
+    left: 20%;
+}
+.social .phone .learn-more.events {
+    position: absolute;
+    top: calc(50% - 7em);
+    right: 10%;
+}
+
+/* Leagues section */
+.leagues .image-content {
+    height: 470px;
+    position: relative;
+    margin: auto;
+}
+
+.leagues .image-content .shadow {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: url(./assets/images/home-page/phone-shadow.png) center center no-repeat;
+    background-size: contain;
+    transform: translate3d(-10px, 30px, 0);
+}
+
+.leagues .image-content .phone {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: url(./assets/images/home-page/phone.png) center center no-repeat;
+    background-size: contain;
+}
+
+.leagues .image-content .phone .screen-shot {
+    background: url(./assets/images/home-page/leagues-screen-shoot.png) center center no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 57px;
+    left: calc(50% - 200px / 2);
+    width: 202px;
+    height: 356px;
+    border-radius: 2px;
+}
+
+/* Reservations section */
+.reservations .image-content {
+    height: 470px;
+    position: relative;
+    margin: auto;
+}
+
+.reservations .image-content .laptop {
+    position: absolute;
+    height: 100%;
+    width: 200%;
+    top: 0;
+    right: 0;
+    background: url(./assets/images/home-page/reservation.png) center right no-repeat;
+    background-size: contain;
+}
+
+@media (max-width: 767px), (max-device-width: 767px) {
+    .reservations .image-content {
+        height: 220px;
+    }
+
+    .reservations .image-content .laptop {
+        width: 100%;
+    }
+}
+
+.feature.child {
+    padding-top: 0;
+}
+
+.child-feature-image img {
+    width: 50px;
+    margin: 20px;
+    opacity: 0.6;
+}
+
+.social .child-feature-image img {
+    filter: invert(100%);
+}
+
+.child-feature-title {
+    font-weight: 700;
+    font-size: 22px;
+    line-height: 1.3;
+}
+
+.child-feature-description {
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.3;
+    padding: 10px 0;
+}
+
+.guild .container {
+    text-align: center;
+}
+
+.guild img {
+    margin: auto;
+    max-width: 100%;
+    -webkit-mask-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,0));
+    -webkit-mask-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.distrikt .container {
+    text-align: center;
+}
+
+.distrikt img {
+    margin: auto;
+    max-width: 100%;
+}

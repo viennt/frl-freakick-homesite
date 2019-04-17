@@ -1,0 +1,9 @@
+"use strict";
+var event_routing_module_1 = require('./event-routing.module');
+exports.EventsRoutes = event_routing_module_1.EventsRoutes;
+var event_component_1 = require('./event.component');
+exports.EventsComponent = event_component_1.EventsComponent;
+var event_module_1 = require('./event.module');
+exports.EventsModule = event_module_1.EventsModule;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9yZXNlcnZhdGlvbnMvZXZlbnQvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBLHFDQUEyQix3QkFBd0IsQ0FBQztBQUE1QywyREFBNEM7QUFDcEQsZ0NBQThCLG1CQUFtQixDQUFDO0FBQTFDLDREQUEwQztBQUNsRCw2QkFBMkIsZ0JBQWdCLENBQUM7QUFBcEMsbURBQW9DIiwiZmlsZSI6ImFwcC9yZXNlcnZhdGlvbnMvZXZlbnQvaW5kZXguanMiLCJzb3VyY2VzQ29udGVudCI6WyJcbmV4cG9ydCB7RXZlbnRzUm91dGVzfSBmcm9tICcuL2V2ZW50LXJvdXRpbmcubW9kdWxlJztcbmV4cG9ydCB7RXZlbnRzQ29tcG9uZW50fSBmcm9tICcuL2V2ZW50LmNvbXBvbmVudCc7XG5leHBvcnQge0V2ZW50c01vZHVsZX0gZnJvbSAnLi9ldmVudC5tb2R1bGUnO1xuIl19

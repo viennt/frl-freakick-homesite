@@ -1,0 +1,115 @@
+
+
+.court-detail {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.court-detail.list-group-item {
+    border-radius: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-top-width: 0;
+    color: #787878;
+}
+
+.court-detail .court-image {
+    padding-left: 0;
+}
+
+.court-detail .thumbnail {
+    border: none;
+}
+
+.court-detail .list-group-item {
+    border: none;
+}
+
+.court-detail .list-group-item:first-child {
+    margin: 0;
+}
+
+.court-detail .court-info,
+.court-detail .court-address {
+    line-height: 1.8;
+    font-size: 90%;
+    text-align: center;
+}
+
+.court-fieldSize img {
+    width: 16px;
+    vertical-align: initial;
+}
+
+.field-opening-hour .btn-opening {
+    width: calc((100% - 1.4vmin) / 4);
+    margin: 0.2vmin;
+    background: #da3743;
+    color: #fcfcfc;
+    height: auto;
+}
+
+.field-opening-hour .btn-opening.btn-auto-with {
+    width: auto;
+}
+
+.field-opening-hour .btn-opening.selected {
+    background: #00C853;
+    border-color: #00C853;
+    font-weight: bold;
+}
+
+.field-opening-hour .btn-opening:not(.selected):hover {
+    background: #e06770;
+    animation: none;
+}
+
+.field-opening-hour .btn-opening:first-child {
+    margin-left: 0;
+}
+
+.filter {
+    border-right: 1px solid #ddd;
+    padding: 0 15px 0 0;
+    float: left;
+    width: 100%;
+}
+
+.time-group,
+.multiple-checkbox {
+    border-bottom: 1px solid #ddd;
+    padding: 10px 0;
+    float: left;
+}
+
+.time-group .title,
+.multiple-checkbox .title {
+    font-weight: bold;
+    padding: 10px 0;
+}
+
+.time-group #court-daterange ~ i {
+    position: absolute;
+    bottom: 24px;
+    right: 10px;
+    top: auto;
+    cursor: pointer;
+}
+
+.multiple-checkbox label {
+    width: 100%;
+    margin: 0;
+    padding: 5px 0;
+    font-weight: normal;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    cursor: pointer;
+}
+
+.multiple-checkbox label input,
+.multiple-checkbox label span {
+    vertical-align: middle;
+    margin: 0;
+    height: 16px;
+}

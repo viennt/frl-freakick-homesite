@@ -1,0 +1,41 @@
+:host /deep/ .posts__item--card .posts__thumb:first-child {
+    min-height: 70px;
+    background: #E1E5EC;
+}
+
+:host /deep/ .posts__item--card .posts__thumb.pickup {
+    background: linear-gradient(20deg, #709ed0, #59aad7 , #3472bb);
+}
+:host /deep/ .posts__item--card .posts__thumb.sponsored {
+    background: linear-gradient(20deg, #f95f86, #cc5395, #8746aa);
+}
+:host /deep/ .posts__item--card .posts__thumb.branch {
+    background: linear-gradient(20deg, #f9cd8f, #fcb658, #fe8d1e);
+}
+:host /deep/ .posts__item--card .posts__thumb.guild {
+    background: linear-gradient(20deg, #4fbbc0, #52c4b5, #56ceae);
+}
+:host /deep/ .posts__item--card .posts__thumb.league {
+    background: linear-gradient(20deg, #d4b7fa, #e7a6de , #f975ac);
+}
+
+:host /deep/ .posts__item--card .posts__title .posts__cat-label {
+    margin-right: 10px;
+}
+
+:host /deep/ .posts__item--card .posts__thumb img:first-child {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+:host /deep/ .event-location img {
+    width: 100%;
+    -webkit-mask-image: linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,1), rgba(0,0,0,0));
+    -webkit-mask-image: -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,1), rgba(0,0,0,0));
+    -webkit-mask-image: -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,1), rgba(0,0,0,0));
+    -webkit-mask-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,1), rgba(0,0,0,0));
+}

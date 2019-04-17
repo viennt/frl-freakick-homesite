@@ -1,0 +1,19 @@
+<sd-navbar></sd-navbar>
+
+<!--[class.blur]="sectionOpacity <= 0.9"-->
+<header #section class="first-section">
+    <div id="overlay"
+         [class.non-fixed]="nonFixedBackground"
+         [style.opacity]="sectionOpacity"></div>
+    <div class="container animated fadeIn">
+        <!--<div class="intro-text" [style.opacity]="2 * sectionOpacity - 1">-->
+            <!--<div class="intro-heading">It’s a new world out there</div>-->
+        <!--</div>-->
+    </div>
+</header>
+
+<section class="home-section">
+    <guild-second-section></guild-second-section>
+</section>
+
+<sd-new-footer></sd-new-footer>

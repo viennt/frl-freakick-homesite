@@ -1,0 +1,102 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="filter no-select">
+                <div class="time-group">
+                    <div class="title color-red"><i class="fa fa-clock-o" aria-hidden="true"></i> Time</div>
+                    <div class="col-md-12 no-padding">
+                        <input type="text" class="form-group form-control" id="court-daterange"/>
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar color-red"
+                           onclick="document.querySelector('#court-daterange').click()"></i>
+                    </div>
+                    <div class="col-md-12 no-padding">
+                        <select class="form-control frk-input animated fadeIn" title="Time"
+                                [disabled]="!availableFilterTimes"
+                                (change)="filterTimeChanged($event.target.value)">
+                            <option *ngIf="!availableFilterTimes" disabled selected>loading...</option>
+                            <option *ngFor="let time of availableFilterTimes"
+                                    [value]="time" [selected]="time === filterTime">{{ time }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="multiple-checkbox">
+                    <div class="title color-red"><i class="fa fa-futbol-o" aria-hidden="true"></i> Sports</div>
+                    <label *ngFor="let sport of availableSports">
+                        <input type="radio" name="sport" [checked]="sport.sportId === filterSport.sportId"
+                               (change)="filterSportsChanged(sport, $event.target.checked)"/>
+                        <span>{{ sport.sportName }}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div *ngIf="loadingResultData">
+                <frk-loading-circle></frk-loading-circle>
+            </div>
+            <div class="list-group" *ngIf="receivedCourts && receivedCourts.length">
+                <div *ngFor="let receivedCourt of receivedCourts; let i = index"
+                     class="list-group-item col-sm-6 court-detail no-margin"
+                     [class.hide]="loadingResultData">
+                    <div class="col-sm-12">
+                        <div class="court-info">
+                            <div class="court-info-line">
+                                <div class="col-sm-12 no-padding text-left">
+                                    {{ i + 1 }}.
+                                    <span class="court-opening-our" data-toggle="tooltip"
+                                          title="Opening hour: from {{ receivedCourt.field.openedTime }} to {{ receivedCourt.field.closedTime }}">
+                                        Opening hour:
+                                        {{ receivedCourt.field.openedTime }} - {{ receivedCourt.field.closedTime }}
+                                    </span>
+                                </div>
+                                <div class="col-sm-12 no-padding text-left">
+                                    <span class="court-fieldCode" data-toggle="tooltip"
+                                          title="Field: {{ receivedCourt.field.fieldCode }}">
+                                        <i class="fa fa-server" aria-hidden="true"></i> Field number:
+                                        {{ receivedCourt.field.fieldCode }}
+                                    </span>
+                                </div>
+                                <div class="col-sm-12 no-padding text-left">
+                                    <span class="court-fieldSize" data-toggle="tooltip"
+                                          title="Size: {{ receivedCourt.field.fieldSize }} players/team">
+                                        <img class="stadium" src="/assets/images/icons/stadium-24.png"> Field size:
+                                        {{ receivedCourt.field.fieldSize }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="court-info-line field-opening-hour">
+                            <button *ngFor="let time of receivedCourt.availableTimes"
+                                    class="btn btn-sm btn-opening" type="button"
+                                    (click)="onBookingField(receivedCourt.field, time)">
+                                {{ time.label }}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!loadingResultData && (receivedCourts && !receivedCourts.length)"
+                 class="courts-result">
+                <div class="result-container">
+                    <div class="no-result col-xs-12">
+                        There are no results found.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bookingFieldModal" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel">
+    <div *ngIf="!selectedField || !selectedFieldTime">
+        <frk-loading-circle></frk-loading-circle>
+    </div>
+    <sd-booking-field-ticket
+            *ngIf="selectedField && selectedFieldTime"
+            [field]="selectedField"
+            [bookingDate]="selectedFieldDate"
+            [bookingTime]="selectedFieldTime"
+    ></sd-booking-field-ticket>
+</div>

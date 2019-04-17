@@ -1,0 +1,32 @@
+modal-body /deep/ .modal-body {
+    background: #f1f1f1;
+}
+
+form input, form textarea {
+    border: 0;
+    outline: 0;
+    padding: 10px 20px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+    width: 100%;
+    margin-top: 1em;
+    -moz-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    resize: none;
+}
+form #input-submit {
+    font-size: 15px;
+    letter-spacing: 0.25vmin;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    background: #106cc8;
+    color: #fcfcfc;
+}
+form #input-submit:hover {
+    -moz-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+    -webkit-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+    box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+}

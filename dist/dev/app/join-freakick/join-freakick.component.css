@@ -1,0 +1,88 @@
+a {
+  color: #fcfcfc;
+}
+a:hover,
+a:focus,
+a:active,
+a.active {
+  color: #fcfcfc;
+}
+
+section {
+  z-index: -2;
+  height: 100vh;
+  display: block;
+}
+
+#overlay,
+:host /deep/ .inline-YTPlayer {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  z-index: -2;
+}
+
+#overlay.non-fixed,
+:host /deep/ .inline-YTPlayer.non-fixed {
+  top: auto;
+  bottom: 0;
+}
+
+#overlay {
+  z-index: -2;
+  position: absolute;
+  background: url(./assets/images/landing-page/background.jpg) no-repeat center center;
+  background-size: cover;
+}
+
+:host /deep/ .inline-YTPlayer {
+  z-index: -1;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  background-size: cover;
+}
+
+:host /deep/ .inline-YTPlayer > #video {
+  padding-bottom: 100vh;
+}
+
+@media (max-width: 767px) {
+  :host /deep/ .inline-YTPlayer {
+    display: none;
+  }
+}
+
+section .container .intro-text {
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  display: table;
+}
+
+@media (max-width: 767px) {
+  section .container .intro-text {
+    margin: 50vh auto auto auto;
+  }
+}
+
+section .container .intro-text .intro-heading {
+  color: #ffffff;
+  font-size: 8vmin;
+  font-weight: bold;
+  line-height: 7vmin;
+  margin-bottom: 7vmin;
+  display: table-cell;
+  vertical-align: middle;
+  text-transform: lowercase;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}

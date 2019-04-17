@@ -1,0 +1,83 @@
+<div class="login">
+    <div class="user-login-5">
+        <div class="row bs-reset">
+            <div class="col-md-12 login-container bs-reset mt-login-5-bsfix bg-white bg-font-white">
+                <div class="login-form-step height-100">
+                    <div class="login-form-step-center height-100">
+                        <div class="form height-100 register-form">
+                            <div class="form-body register-form-center">
+                                <form class="login-form" #resetPasswordForm="ngForm" [class.message]="isSentEmail">
+                                    <div *ngIf="!isSentEmail">
+                                        <div class="font-dark margin-bottom-25">
+                                            <div class="logo text-center margin-bottom-25">
+                                                <a [routerLink]="['/']">
+                                                    <img src="./assets/images/logo/freakick_logo_dark.png" alt="" width="100"/> </a>
+                                            </div>
+                                            <div class="h2 text-center">Forgot your password?</div>
+                                            <div class="h4 thin text-center">Enter your email address that you used to register.</div>
+                                            <div class="h4 thin text-center">We'll send you an email with a link to reset your password.</div>
+                                        </div>
+                                        <hr>
+                                        <div class="font-dark form-group"
+                                            [class.has-error]="!emailModel.valid && emailModel.dirty">
+                                            <input #emailModel="ngModel" name="email" required maxlength="55"
+                                                    autocomplete="off" type="email" placeholder="Email (*)"
+                                                    class="form-control form-control-solid placeholder-no-fix input-lg"
+                                                    pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+                                                    [(ngModel)]="userEmail"/>
+                                            <span *ngIf="!emailModel.valid && emailModel.dirty"
+                                                    class="help-block">Invalid email</span>
+                                        </div>
+                                        <div class="font-dark row">
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-block btn-circle blue bold"
+                                                        [disabled]="!resetPasswordForm.form.valid || isLoading"
+                                                        (click)="login()">
+                                                    <span>Send</span>
+                                                    <i *ngIf="isLoading" class="fa fa-circle-o-notch fa-spin"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-xs-8 text-right">
+                                                <div class="btn">
+                                                    <a [routerLink]="['/', 'login']">Back to Login Page</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="col-xs-12 text-center">
+                                            <div class="btn">
+                                                <span>If you still need help, contact</span>
+                                                <a (click)="contactForm.open()">Freakick Support</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="isSentEmail">
+                                        <div class="font-dark margin-bottom-25">
+                                            <div class="logo text-center margin-bottom-25">
+                                                <a [routerLink]="['/']">
+                                                    <img src="./assets/images/logo/freakick_logo_dark.png" alt="" width="100"/> </a>
+                                            </div>
+                                            <div class="h2 text-center">Received!</div>
+                                            <div class="h4 thin text-center">
+                                                We just sent a message to the email you provided with a link to reset your password. 
+                                                Please check your inbox and follow the instructions in the email.
+                                            </div>
+                                        </div>
+                                        <hr>
+                                        <div class="col-xs-12 text-center">
+                                            <div class="btn">
+                                                <a (click)="onClickToBackForm()">I didn't receive the email</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<frk-contact-form #contactForm></frk-contact-form>

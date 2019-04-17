@@ -1,0 +1,72 @@
+:host {
+    background: #ffffff;
+    color: #333333;
+    padding: 60px 0;
+    display: block;
+}
+@media (min-width: 768px) {
+    :host {
+        padding: 80px 0;
+    }
+}
+
+h1 {
+    font-weight: 700;
+    font-size: 36px;
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.section-content {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.brand-image {
+    width: 100%;
+}
+
+.learn-more {
+    color: #2973AC;
+    font-size: 18px;
+    border: 1px solid #2973AC;
+    background: transparent;
+    letter-spacing: 0.25vmin;
+    border-radius: 500px;
+    padding: 7px 20px;
+    text-decoration: none;
+    text-shadow: none;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+.learn-more:hover {
+    background: #2973AC;
+    color: #fcfcfc;
+}
+
+.branch-des {
+    padding-top: 0;
+}
+
+@media (min-width: 768px) {
+    .branch-des {
+        padding-top: 35px;
+    }
+}
+
+@media (min-width: 992px) {
+    .branch-des {
+        padding-top: 65px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .branch-des {
+        padding-top: 100px;
+    }
+}

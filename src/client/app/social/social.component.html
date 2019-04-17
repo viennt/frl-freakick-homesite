@@ -1,0 +1,37 @@
+<sd-navbar></sd-navbar>
+
+<!--[class.blur]="sectionOpacity <= 0.9"-->
+<header #section class="first-section">
+    <div id="overlay"
+         [class.non-fixed]="nonFixedBackground"
+         [style.opacity]="sectionOpacity"></div>
+    <div class="container animated fadeIn">
+        <div class="intro-text" [style.opacity]="2 * sectionOpacity - 1">
+            <div class="intro-heading">crowdsourced experience</div>
+        </div>
+        <div class="description-text" [style.opacity]="1.6 - 2 * sectionOpacity">
+            <div class="main-description">
+                We represent a cultural transformation that builds up knowledge through user engagement.<br/>
+                All by adding fun and competitiveness via local experiences.
+            </div>
+        </div>
+    </div>
+</header>
+
+<section class="home-section">
+    <soc-first-section></soc-first-section>
+</section>
+
+<section class="home-section">
+    <soc-second-section></soc-second-section>
+</section>
+
+<section class="home-section">
+    <soc-third-section></soc-third-section>
+</section>
+
+<section class="home-section">
+    <soc-fourth-section></soc-fourth-section>
+</section>
+
+<sd-new-footer></sd-new-footer>

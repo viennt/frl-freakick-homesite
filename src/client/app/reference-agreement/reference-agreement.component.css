@@ -1,0 +1,33 @@
+
+.terms {
+    padding: 60px 48px;
+    max-width: 960px;
+    margin: auto;
+}
+.terms p {
+    font-weight: 300;
+    color: #23282b;
+    line-height: 150%;
+    margin: 0 0 15px 0;
+}
+ol {
+    list-style-type: decimal;
+}
+ol > li > ol {
+    list-style-type: upper-alpha;
+}
+
+.parent-term {
+    height: 400px;
+    overflow-y: scroll;
+    background: #f7f7f7;
+    padding: 2%;
+}
+
+.checkbox-term {
+    height: unset;
+}
+
+.agree-terms {
+    margin-top: 10px;
+}

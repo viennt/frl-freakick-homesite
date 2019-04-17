@@ -1,0 +1,32 @@
+<div class="event-images">
+    <div class="container" *ngIf="event && !isNotFoundEvent">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h2>{{ event.name }}</h2>
+                <div class="court-info-line">
+                    <div class="block" *ngFor="let group of event.ageGroups">
+                        <span class="tag is-success">
+                            {{ group.groupName }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row bottom-row">
+            <div class="col-md-3 col-sm-4 col-xs-6" *ngFor="let image of event.images">
+                <figure class="image is-1by1">
+                    <img [src]="image" (error)="updateImage(image)" (click)="showModal(image)" class="grow">
+                </figure>
+            </div>
+        </div>
+        <div class="modal" id="modal-image-popup" *ngIf="selectedImage">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <p class="image">
+                    <img src="{{ selectedImage }}">
+                </p>
+            </div>
+            <button class="modal-close" (click)="hideModal()"></button>
+        </div>
+    </div>
+</div>

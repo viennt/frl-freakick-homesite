@@ -1,0 +1,80 @@
+<div class="modal-dialog" role="document" *ngIf="!isLoading">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div *ngIf="bookingErrorMessage" class="alert alert-danger" role="alert">
+        <strong>Error!</strong> {{ bookingErrorMessage }}
+      </div>
+      <div *ngIf="isBookingSuccess" class="alert alert-success" role="alert">
+        <strong>Success!</strong> You booked a ticket successfully.
+      </div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title" id="myModalLabel">Booking Class Ticket</h4>
+    </div>
+    <div class="modal-body field-information">
+      <div class="court-name">{{ trainingClass.branch.name }}</div>
+      <div class="court-rating">
+            <span class="countRating" data-toggle="tooltip"
+                  title="{{ trainingClass.branch.rating }} stars of {{ trainingClass.branch.countRating }} rated">
+              <i class="fa" *ngFor="let star of [1, 2, 3, 4, 5]"
+                 [class.fa-star]="star <= trainingClass.branch.rating"
+                 [class.fa-star-o]="star > trainingClass.branch.rating"></i>
+              {{ trainingClass.branch.countRating }} <i class="fa fa-user" aria-hidden="true"></i>
+            </span>
+      </div>
+      <div class="court-opening-hour" data-toggle="tooltip"
+           title="Class name: {{ trainingClass.className }}">
+        Class: {{ trainingClass.className }}
+      </div>
+      <div class="court-opening-hour " data-toggle="tooltip"
+           title="Class time: from {{ trainingClass.from }}
+               to {{ trainingClass.to }}">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        {{ trainingClass.from }} - {{ trainingClass.to }}
+      </div>
+      <div class="court-fieldCode" data-toggle="tooltip"
+           title="Class code: {{ trainingClass.classCode }}">
+        <i class="fa fa-server" aria-hidden="true"></i>
+        {{ trainingClass.classCode }}
+      </div>
+      <div class="court-fieldCode" data-toggle="tooltip"
+           title="Day price: {{ trainingClass.dayPrice }}">
+        <i class="fa fa-usd" aria-hidden="true"></i> {{ trainingClass.dayPrice }}
+      </div>
+      <div class="court-fieldCode" data-toggle="tooltip"
+           title="Whole class price: {{ trainingClass.wholeClassPrice }}">
+        <i class="fa fa-usd" aria-hidden="true"></i> {{ trainingClass.wholeClassPrice }}
+      </div>
+      <div class="court-address" data-toggle="tooltip"
+           title="Address: {{ trainingClass.branch.address }}">
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        {{ trainingClass.branch.address }}
+      </div>
+      <div class="input-label">
+        <div>Date:</div>
+        <div>Quantity:</div>
+      </div>
+      <div class="input-group">
+        <div class="form-group form-control frk-input datetime-picker animated">
+          <input type="text" class="form-group form-control" id="class-ticket-daterange"/>
+          <i class="glyphicon glyphicon-calendar fa fa-calendar"
+             onclick="document.querySelector('#class-ticket-daterange').click()"></i>
+        </div>
+        <input type="number" class="form-control frk-input search-keyword"
+               placeholder="Quantity" min="1" (ngModelChange)="onChangeQuantity($event)"
+               [(ngModel)]="bookingTicketQuantity"/>
+      </div>
+    </div>
+    <div class="modal-footer" *ngIf="!isBookingSuccess">
+      <button type="button" class="btn btn-danger"
+              *ngIf="submitState !== 0"
+              (click)="onBookingTicket($event)">
+        {{ submitState === 1 ? 'Join a class' : 'Joining' }}
+      </button>
+      <button type="button" class="btn btn-danger" disabled *ngIf="submitState === 0">
+        Join a class
+      </button>
+    </div>
+  </div>
+</div>

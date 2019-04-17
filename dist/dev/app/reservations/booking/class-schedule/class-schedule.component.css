@@ -1,0 +1,35 @@
+.field-information > table td {
+  line-height: 2;
+}
+
+.field-information > table th {
+  color: #787878;
+}
+
+.field-information > table th,
+.field-information > table td {
+  border: none;
+}
+
+.field-information > table td div.date {
+  width: 12vmin;
+  border-radius: 2vmin;
+  background-color: #68cdff;
+  color: #fcfcfc;
+  display: table;
+  text-align: center;
+  font-weight: bold;
+}
+
+.field-information > table td div.date span {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.field-information > table td span.time {
+  color: #101010;
+}
+
+.field-information > table td span.address {
+  color: #787878;
+}

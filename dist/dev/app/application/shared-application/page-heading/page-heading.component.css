@@ -1,0 +1,12 @@
+.page-heading {
+    background-image: url(./assets/images/application/page-heading.jpg);
+}
+.page-heading::before {
+    background-image: url(./assets/images/application/page-heading-pattern.png);
+}
+
+@media (min-width: 992px) {
+    .page-heading {
+        padding: 50px 0;
+    }
+}

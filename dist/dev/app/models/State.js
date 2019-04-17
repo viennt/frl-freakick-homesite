@@ -1,0 +1,11 @@
+"use strict";
+var State = (function () {
+    function State(stateId, stateName) {
+        this.stateId = stateId;
+        this.stateName = stateName;
+    }
+    return State;
+}());
+exports.State = State;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RlbHMvU3RhdGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQU1BO0lBSUUsZUFBWSxPQUFlLEVBQUUsU0FBaUI7UUFDNUMsSUFBSSxDQUFDLE9BQU8sR0FBRyxPQUFPLENBQUM7UUFDdkIsSUFBSSxDQUFDLFNBQVMsR0FBRyxTQUFTLENBQUM7SUFDN0IsQ0FBQztJQUVILFlBQUM7QUFBRCxDQVRBLEFBU0MsSUFBQTtBQVRZLGFBQUssUUFTakIsQ0FBQSIsImZpbGUiOiJhcHAvbW9kZWxzL1N0YXRlLmpzIiwic291cmNlc0NvbnRlbnQiOlsiXG4vKipcbiAqIEBkZXNjcmlwdGlvbjogU3RhdGUgbW9kZWxcbiAqIEBhdXRob3I6IE5lc3RvciBOTVxuICogQGRhdGU6IDEzLU9jdC0yMDE2XG4gKi9cbmV4cG9ydCBjbGFzcyBTdGF0ZSB7XG4gIHB1YmxpYyBzdGF0ZUlkOiBudW1iZXI7XG4gIHB1YmxpYyBzdGF0ZU5hbWU6IHN0cmluZztcblxuICBjb25zdHJ1Y3RvcihzdGF0ZUlkOiBudW1iZXIsIHN0YXRlTmFtZTogc3RyaW5nKSB7XG4gICAgdGhpcy5zdGF0ZUlkID0gc3RhdGVJZDtcbiAgICB0aGlzLnN0YXRlTmFtZSA9IHN0YXRlTmFtZTtcbiAgfVxuXG59XG4iXX0=

@@ -1,0 +1,128 @@
+:host {
+    display: block;
+    min-height: calc(100vh - 200px);
+}
+
+.branch-info {
+    background: #f5f5f5;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+.google-map {
+    border-radius: 2px;
+    margin: 10px 0;
+    padding: 5px;
+    background-color: #fcfcfc;
+    border: 1px solid #dddddd;
+    line-height: 1.5;
+}
+
+.google-map .panel-footer {
+    background: transparent;
+}
+
+.google-map .address {
+    padding: 10px 10px 2px 10px;
+    font-size: 90%;
+}
+
+.google-map .get-direction {
+    padding: 2px 10px 2px 10px;
+    cursor: pointer;
+    font-size: 90%;
+}
+
+.google-map .got-direction {
+    padding: 2px 10px 2px 10px;
+    font-size: 90%;
+}
+
+.google-map .phone {
+    padding: 2px 10px 10px 10px;
+    font-size: 90%;
+}
+
+.sebm-google-map-container {
+    height: 150px;
+}
+
+.sebm-google-map-container >>> .sebm-google-map-container-inner {
+    width: 100%;
+}
+
+.nav-tabs {
+    border-bottom: none;
+}
+
+.nav-tabs > button {
+    background: #ececec;
+    color: #101010;
+    width: calc(92% / 3);
+    height: auto;
+    box-shadow: none;
+    margin: 1%;
+    outline: none;
+}
+
+.nav-tabs > button[disabled] {
+    background: transparent;
+    color: #787878;
+}
+
+.nav-tabs > button.btn-auto-with {
+    width: auto;
+}
+
+.nav-tabs > button.active {
+    background: #da3743;
+    color: #fcfcfc;
+}
+
+.nav-tabs > button:first-child {
+    margin-left: 0;
+}
+
+/*.nav-tabs > li.active:hover > a {*/
+    /*background: #e06770;*/
+/*}*/
+
+.branch-cover {
+    width: 100%;
+    max-height: 200px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.branch-cover > div {
+    width: 100%;
+    max-height: 100%;
+}
+
+.branch-cover > div img {
+    width: 100%;
+    max-height: 100%;
+}
+
+.no-result {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+input[type="checkbox"][disabled] ~ span {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.branch-rating {
+    cursor: pointer;
+}
+
+.user-review {
+    opacity: 0.75;
+    font-size: 75%;
+}
+
+.container.loading {
+    min-height: 100vh;
+}

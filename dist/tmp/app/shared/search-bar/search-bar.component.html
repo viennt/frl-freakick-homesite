@@ -1,0 +1,17 @@
+<div class="form-group">
+    <ng-select #keyWordInput class="search-box keyword col-xs-12 col-sm-5"
+               [allowClear]="true"
+               (selected)="onKeyWordSelected($event)"
+               (typed)="onTypedKeyword($event)"
+               placeholder="Classes, courts, events or facilities">
+    </ng-select>
+    <ng-select #locationInput class="search-box location col-xs-12 col-sm-5"
+               [allowClear]="true"
+               (selected)="onLocationSelected($event)"
+               (typed)="onTypedLocation($event)"
+               placeholder="No city selected">
+    </ng-select>
+    <a class="btn search-btn col-xs-12 col-sm-2 " id="searchBtn" (click)="onClickSearchButton()">
+        <i class="fa fa-search" aria-hidden="true"></i>
+    </a>
+</div>

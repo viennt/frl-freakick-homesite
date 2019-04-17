@@ -1,0 +1,187 @@
+<div class="site-wrapper clearfix">
+    <div class="site-overlay"></div>
+    <!-- Header
+        ================================================== -->
+    <!-- Header Mobile -->
+    <div class="header-mobile clearfix" id="header-mobile"
+         [class.header-mobile--expanded]="expandSearchBox">
+        <div class="header-mobile__logo">
+            <a [routerLink]="['/app/newsfeed/']">
+                <img src="./assets/images/freakick-logo.png"
+                     srcset="./assets/images/freakick-logo.png 3x"
+                     alt="Alchemists" class="header-mobile__logo-img"></a>
+        </div>
+        <div class="header-mobile__inner">
+            <a id="header-mobile__toggle" class="burger-menu-icon"><span
+                    class="burger-menu-icon__line"></span></a>
+            <span class="header-mobile__search-icon" id="header-mobile__search-icon"
+                  [class.header-mobile__search-icon--close]="expandSearchBox"
+                  (click)="expandSearchBox = !expandSearchBox"></span>
+        </div>
+        <div class="header-search-form">
+            <form action="#" id="mobile-search-form" class="search-form">
+                <input type="text"
+                       class="form-control header-mobile__search-control"
+                       value="" placeholder="Enter your seach here...">
+                <button type="submit" class="header-mobile__search-submit"><i
+                        class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <!-- Header Desktop -->
+    <header class="header">
+        <!-- Header Secondary -->
+        <div class="header__secondary">
+            <div class="container">
+                <!-- Header Search Form -->
+                <div class="header-search-form">
+                    <form action="#" id="mobile-search-form"
+                          class="search-form">
+                        <input type="text"
+                               class="form-control header-mobile__search-control"
+                               value="" placeholder="Enter your seach here...">
+                        <button class="header-mobile__search-submit"><i
+                                class="fa fa-search"></i></button>
+                    </form>
+                </div>
+                <!-- Header Search Form / End -->
+                <ul class="info-block info-block--header">
+                    <li class="info-block__item info-block__item--shopping-cart">
+                        <a [routerLink]="['/app/leagues']" class="info-block__link-wrapper">
+                            <div class="df-icon-stack df-icon-stack--bag">
+                                <img alt="" class="img-circle" [src]="'./assets/images/application/top-menu-league.png'">
+                            </div>
+                            <h6 class="info-block__heading">League</h6>
+                            <span class="info-block__link">1 league</span>
+                        </a>
+                    </li>
+                    <li class="info-block__item info-block__item--shopping-cart">
+                        <a [routerLink]="['/app/teams']" class="info-block__link-wrapper">
+                            <div class="df-icon-stack df-icon-stack--bag">
+                                <img alt="" class="img-circle" [src]="'./assets/images/application/top-menu-team.png'">
+                            </div>
+                            <h6 class="info-block__heading">Team</h6>
+                            <span class="info-block__link">2 teams</span>
+                        </a>
+                    </li>
+                    <li class="info-block__item info-block__item--shopping-cart has-children">
+                        <a [routerLink]="['/app/profile']" class="info-block__link-wrapper">
+                            <div class="df-icon-stack df-icon-stack--bag">
+                                <img alt="" class="img-circle" [src]="userImage"
+                                     (error)="$event.target.src = './assets/images/default/user_logo.png'">
+                            </div>
+                            <h6 class="info-block__heading">{{ userFullName }}</h6>
+                            <span class="info-block__link">{{ '@' + userName }}</span>
+                        </a>
+                        <ul class="header-cart">
+                            <li class="header-cart__item">
+                                <div class="header-cart__inner">
+                                    <h5 class="header-cart__product-name" (click)="logout($event)">
+                                        <a> <i class="icon-key"></i> Logout</a></h5>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- Header Secondary / End -->
+
+        <!-- Header Primary -->
+        <div class="header__primary">
+            <div class="container">
+                <div class="header__primary-inner">
+
+                    <!-- Header Logo -->
+                    <div class="header-logo">
+                        <a [routerLink]="['/app/newsfeed/']">
+                            <img src="./assets/images/freakick-logo.png"
+                                 srcset="./assets/images/freakick-logo.png 3x"
+                                 alt="Alchemists" class="header-logo__img"></a>
+                    </div>
+                    <!-- Header Logo / End -->
+
+                    <!-- Main Navigation -->
+                    <nav *ngIf="hasLeague" class="main-nav clearfix">
+                        <ul *ngIf="currentRoute" class="main-nav__list">
+                            <div class="header-mobile__logo">
+                                <span class="main-nav__back"></span>
+                                <a [routerLink]="['/']">
+                                    <img src="./assets/images/freakick-logo.png"
+                                         srcset="./assets/images/freakick-logo.png 3x"
+                                         alt="Alchemists"
+                                         class="header-mobile__logo-img"></a>
+                            </div>
+                            <li [class.active]="currentRoute.startsWith('/app/newsfeed')">
+                                <a [routerLink]="['/app/newsfeed']">
+                                    <i class="fa fa-feed"></i>
+                                    <span class="title">News feed</span>
+                                </a>
+                            </li>
+                            <li [class.active]="currentRoute.startsWith('/app/facilities')">
+                                <a [routerLink]="['/app/fields']">
+                                    <i class="fa fa-th-large"></i>
+                                    <span class="title">Fields</span>
+                                </a>
+                            </li>
+                            <li [class.active]="currentRoute.startsWith('/app/facilities')">
+                                <a [routerLink]="['/app/facilities']">
+                                    <i class="fa fa-map"></i>
+                                    <span class="title">Facilities</span>
+                                </a>
+                            </li>
+                            <li [class.active]="currentRoute.startsWith('/app/classes')">
+                                <a [routerLink]="['/app/classes']">
+                                    <i class="fa fa-leanpub"></i>
+                                    <span class="title">Classes</span>
+                                </a>
+                            </li>
+                            <li [class.active]="currentRoute.startsWith('/app/maps')">
+                                <a [routerLink]="['/app/maps']">
+                                    <i class="fa fa-map-marker"></i>
+                                    <span class="title">Maps</span>
+                                </a>
+                            </li>
+                            <li class="nav-account__item">
+                                <a data-toggle="modal"
+                                   data-target="#modal-login-register-tabs">Your Account</a>
+                            </li>
+                            <li class="nav-account__item nav-account__item--logout">
+                                <a (click)="logout($event)">
+                                    <i class="fa fa-key"></i>Logout</a>
+                            </li>
+                        </ul>
+
+                        <!-- Social Links -->
+                        <ul class="social-links social-links--inline social-links--main-nav">
+                            <li class="social-links__item">
+                                <a class="social-links__link"
+                                   data-toggle="tooltip" data-placement="bottom"
+                                   title="" data-original-title="Facebook">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                            </li>
+                            <li class="social-links__item">
+                                <a class="social-links__link"
+                                   data-toggle="tooltip" data-placement="bottom"
+                                   title="" data-original-title="Twitter">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li class="social-links__item">
+                                <a class="social-links__link"
+                                   data-toggle="tooltip" data-placement="bottom"
+                                   title="" data-original-title="Google+">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                        </ul>
+                        <!-- Social Links / End -->
+                    </nav>
+                    <!-- Main Navigation / End -->
+                </div>
+            </div>
+        </div>
+        <!-- Header Primary / End -->
+    </header>
+</div>

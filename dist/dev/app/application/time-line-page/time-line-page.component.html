@@ -1,0 +1,52 @@
+<app-layout-three-columns>
+    <div page-body>
+        <app-posting-event-box></app-posting-event-box>
+        <router-outlet></router-outlet>
+        <router-outlet name="event"></router-outlet>
+    </div>
+    <div page-right-sidebar>
+        <!-- TODO: Place by sponsored event or weather box -->
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject bold">Sponsored by Adidas</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="mt-element-overlay">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mt-overlay-2 mt-overlay-2-grey">
+                                <img src="./assets/images/ads.jpg">
+                                <div class="mt-overlay">
+                                    <a class="mt-info btn default btn-outline" href="javascript:;">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="portlet light bordered">
+            <div class="portlet-title">
+                <div class="caption">
+                    <span class="caption-subject bold">Sponsored by Adidas</span>
+                </div>
+            </div>
+            <div class="portlet-body">
+                <div class="mt-element-overlay">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="mt-overlay-2 mt-overlay-2-grey">
+                                <img src="./assets/images/ads2.jpg">
+                                <div class="mt-overlay">
+                                    <a class="mt-info btn default btn-outline" href="javascript:;">Learn More</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</app-layout-three-columns>

@@ -1,0 +1,44 @@
+<sd-navbar class="reservations"></sd-navbar>
+
+<section class="feature reservations">
+    <div class="container">
+        <div frk-scroll animation="fadeInRight"
+             class="feature-image col-sm-6 col-sm-push-6">
+            <div class="image-content">
+                <div class="laptop"></div>
+            </div>
+        </div>
+        <div class="feature-content col-sm-6 col-sm-pull-6">
+            <div class="sub-content" [class.show-children]="false">
+                <div class="title">{{ reservationsFeature.title }}</div>
+                <div class="description">{{ reservationsFeature.description[0]
+                    }}
+                </div>
+                <div class="sub-description">
+                    {{ reservationsFeature.description[1] }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="feature reservations child">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 text-center"
+                 *ngFor="let feature of reservationsFeature.children">
+                <div class="child-feature-image">
+                    <img [src]="'./assets/images/home-page/icon-' + feature.id + '.png'"
+                         alt="">
+                </div>
+                <div class="child-feature-title">
+                    {{ feature.title }}
+                </div>
+                <div class="child-feature-description">
+                    <span *ngFor="let des of feature.description">{{ des }} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<sd-new-footer></sd-new-footer>

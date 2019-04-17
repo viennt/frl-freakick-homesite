@@ -1,0 +1,8 @@
+<app-template-time-line *ngIf="events" [events]="events"></app-template-time-line>
+<app-template-time-line-loading *ngIf="!events || isLoading"></app-template-time-line-loading>
+<div *ngIf="!isLoading" class="portlet light bordered"
+     (click)="loadMoreEvent($event)">
+    <span class="caption-subject font-dark bold uppercase">
+        <span class="btn">More</span>
+    </span>
+</div>

@@ -1,0 +1,49 @@
+<sd-navbar></sd-navbar>
+
+<!--[class.blur]="sectionOpacity <= 0.9"-->
+<header #section class="home-section">
+    <div id="overlay"
+         [class.non-fixed]="nonFixedBackground"
+         [style.opacity]="sectionOpacity"></div>
+    <div id="video" class="hidden-xs"
+         [class.non-fixed]="nonFixedBackground"
+         [style.opacity]="sectionOpacity"></div>
+    <div class="container no-padding animated fadeIn">
+        <div class="intro-text" [style.opacity]="2 * sectionOpacity - 1">
+            <div class="intro-heading">think upstream</div>
+        </div>
+        <div class="freakick-text" [style.opacity]="1.6 - 2 * sectionOpacity">
+            Sports are more than just a recreational activity--they are effective tools for positive social and personal change.
+        </div>
+    </div>
+</header>
+
+<section class="home-section">
+    <soc-first-section></soc-first-section>
+</section>
+
+<section class="home-section">
+    <soc-second-section></soc-second-section>
+</section>
+
+<section class="home-section">
+    <soc-third-section></soc-third-section>
+</section>
+
+<section class="home-section">
+    <soc-fourth-section></soc-fourth-section>
+</section>
+
+<section class="home-section">
+    <soc-fifth-section></soc-fifth-section>
+</section>
+
+<section class="home-section">
+    <soc-sixth-section></soc-sixth-section>
+</section>
+
+<section class="home-section">
+    <soc-experience></soc-experience>
+</section>
+
+<sd-new-footer></sd-new-footer>

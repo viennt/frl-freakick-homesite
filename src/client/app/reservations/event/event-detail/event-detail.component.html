@@ -1,0 +1,207 @@
+<div class="event-info">
+    <div class="container" *ngIf="event && !isNotFoundEvent">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                <h2>{{ event.name }}</h2>
+                <div class="court-info-line">
+                    <div class="block" *ngFor="let group of event.ageGroups">
+                        <span class="tag is-success">
+                            {{ group.groupName }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="panel google-map">
+                    <div class="panel-body no-padding">
+                        <div class="col-sm-6 no-padding">
+                            <figure class="image event-image">
+                                <img [src]="event.images[0]" (error)="updateImage(event.images[0])" class="grow">
+                            </figure>
+                            <a [routerLink]="['images']" *ngIf="event.images.length > 2" class="small-alert">See all</a>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-content">
+                                        <a class="btn btn-sm btn-default" *ngIf="isInterested"
+                                           (click)="updateInterested(event)">
+                                            <i aria-hidden="true" class="fa fa-heart"></i>
+                                            Interested
+                                        </a>
+                                        <a class="btn btn-sm btn-default" *ngIf="!isInterested"
+                                           (click)="updateInterested(event)">
+                                            <i aria-hidden="true" class="fa fa-heart-o"></i>
+                                            Interest this event
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="content">
+                                    <div class="infobox">
+                                        <span><i class="fa fa-map-marker fa-2" aria-hidden="true"></i></span>
+                                        <div class="infobox-details">
+                                            <a [routerLink]="['/reservations/branch', event.sponsoredByBranch.id]">
+                                                {{ event.sponsoredByBranch.name }}
+                                            </a>
+                                            <p>
+                                                {{ event.address }}
+                                                Phone number {{ event.contactPhone }}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="infobox">
+                                        <span><i class="fa fa-calendar-plus-o" aria-hidden="true"></i></span>
+                                        <div class="infobox-details">
+                                            <span><strong>From: </strong>{{ event.startDate }}</span>
+                                            <br />
+                                            <span><strong>To: </strong>{{ event.endDate }}</span>
+                                            <br />
+                                            <div class="dropdown">
+                                                <a class="dropdown-toggle" id="add-to-cal" data-toggle="dropdown">Add to Calendar <span class="caret"></span></a>
+                                                <ul class="dropdown-menu" role="menu" aria-labelledby="add-to-cal">
+                                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="http://www.google.com/calendar/render?action=TEMPLATE&text={{ event.name }}&dates={{event.startDate | date: 'yyyyMMddT000000'}}Z/{{event.startDate | date: 'yyyyMMddT000000'}}Z&details=Event on Freakick&location={{ event.address }}&sf=true&output=xml" target="_blank" rel="nofollow">Google Calendar</a></li>
+                                                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">iCal/Outlook</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="verifyCode && isPaymentExecuteSuccess" class="infobox">
+                                        <div class="alert alert-success">
+                                            Payment success!<br/>
+                                            Your verify code: <strong>{{ verifyCode }}</strong>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="errorMessage" class="infobox">
+                                        <div class="alert alert-danger">
+                                            Payment failed!<br/>
+                                            <strong>{{ errorMessage }} <a *ngIf="errorLink" href="{{ errorLink }}" target="_blank">Document</a></strong>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="paymentId" class="infobox">
+                                        <div paypalCheckout
+                                             [paymentId]="paymentId"
+                                             (onAuthorize)="executePayment($event)">
+                                        </div>
+                                        <a (click)="showCreditCardForm($event)" class="pay-with-card">
+                                            <img src="/assets/images/cards.png">
+                                            <p>Pay with your card</p>
+                                        </a>
+                                    </div>
+                                    <div *ngIf="!verifyCode" class="infobox">
+                                        <span><i class="fa fa-dollar" aria-hidden="true"></i></span>
+                                        <div class="infobox-details">
+                                            <div *ngIf="!isShownRegisterForm && event.availableSlots > 0" class="field is-grouped">
+                                                <span>{{ event.ticketPrice != 0 ? event.ticketPrice : 'Free' }} - </span>
+                                                <a *ngIf="event.userInvolvedStatus !== 1" (click)="showRegisterForm($event)">Get a ticket</a>
+                                                <span *ngIf="event.userInvolvedStatus === 1">
+                                                    {{ event.userInvolvedStatusName }}</span>
+                                            </div>
+                                            <div *ngIf="event.availableSlots == 0">
+                                                <span *ngIf="event.userInvolvedStatus">{{ event.ticketPrice != 0 ? event.ticketPrice : 'Free' }} - Out of slots! ({{ event.userInvolvedStatusName }})</span>
+                                                <span *ngIf="!event.userInvolvedStatus">{{ event.ticketPrice != 0 ? event.ticketPrice : 'Free' }} - Out of slots!</span>
+                                            </div>
+                                            <div *ngIf="isShownRegisterForm" class="field is-grouped">
+                                                <p class="control">
+                                                    <input class="input" type="number"
+                                                           placeholder="Enter quantity"
+                                                           min="1"
+                                                           [(ngModel)]="registerQuantity">
+                                                </p>
+                                                <p class="control">
+                                                    <button class="button btn-xs"
+                                                            (click)="registerEvent($event)"
+                                                            [disabled]="!registerQuantity || registerQuantity <= 0">Get <i class="fa fa-spinner" *ngIf="isRegisteringEvent"></i></button>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="pay-with-card-form" *ngIf="isShownCreditCardForm && currentUser">
+                                        <form #payWithCreditCardForm="ngForm">
+                                            <div class="infobox">
+                                                <input name="firstName" type="text" placeholder="First Name" required class="form-control two-fields" [(ngModel)]="currentUser.firstName">
+                                                <input name="lastName" type="text" placeholder="Last Name" required class="form-control" [(ngModel)]="currentUser.lastName">
+                                            </div>
+                                            <div class="infobox">
+                                                <input name="lineAddress" type="text" placeholder="Line Address" required class="form-control" [(ngModel)]="currentUser.lineAddress">
+                                            </div>
+                                            <div class="infobox">
+                                                <input name="cityName" type="text" placeholder="City Name" required class="form-control two-fields" [(ngModel)]="currentUser.city.cityName">
+                                                <input name="stateName" type="text" placeholder="State" required class="form-control" [(ngModel)]="currentUser.state.stateName">
+                                            </div>
+                                            <div class="infobox">
+                                                <input name="postalCode" type="text" placeholder="Postal Code" required class="form-control two-fields" [(ngModel)]="currentUser.postalCode">
+                                                <input name="countryCode" type="text" placeholder="Country Code" required class="form-control" [(ngModel)]="currentUser.countryCode">
+                                            </div>
+                                            <div class="infobox" [formGroup]="form">
+                                                <input id="cc-number" type="tel" autocomplete="cc-number" ccNumber required class="form-control" placeholder="CC Number" formControlName="creditCard" [(ngModel)]="currentUser.cardNumber">
+                                                <img [src]="getCreditCardType()" class="card-type" >
+                                            </div>
+                                            <div class="infobox" [formGroup]="form">
+                                                <input id="cc-exp-date" type="tel" autocomplete="cc-exp" ccExp required class="form-control two-fields" placeholder="CC Expiration" formControlName="expirationDate" [(ngModel)]="currentUser.expiration">
+                                                <input id="cc-cvc" type="tel" autocomplete="off" ccCvc required class="form-control" placeholder="CC CVC" formControlName="cvc" maxlength="4" minlength="3" [(ngModel)]="currentUser.cvc">
+                                            </div>
+                                            <div class="infobox text-center">
+                                                <button class="btn btn-default" [disabled]="!payWithCreditCardForm.valid || !form.valid" (click)="payWithCreditCard($event)">Pay Now</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel google-map">
+                    <div class="panel-body no-padding">
+                        <sebm-google-map [zoom]="16" [streetViewControl]="false"
+                                         [latitude]="event.sponsoredByBranch.coordinate.lat"
+                                         [longitude]="event.sponsoredByBranch.coordinate.lng">
+                            <sebm-google-map-marker [latitude]="event.sponsoredByBranch.coordinate.lat"
+                                                    [longitude]="event.sponsoredByBranch.coordinate.lng">
+                            </sebm-google-map-marker></sebm-google-map>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" *ngIf="!event && isNotFoundEvent">
+        Could not find event!
+    </div>
+
+    <div class="container loading" *ngIf="!event && !isNotFoundEvent">
+        <frk-loading-circle></frk-loading-circle>
+    </div>
+</div>
+
+<div class="event-more">
+    <div class="container" *ngIf="event && !isNotFoundEvent">
+        <div class="row">
+            <div class="col-sm-8">
+                <article>
+                    <div class="title-section color-red">
+                        <i aria-hidden="true" class="fa fa-info-circle"></i>
+                        Description
+                    </div>
+                    <div class="description" [innerHTML]="event.description"></div>
+                </article>
+                <ev-reviews *ngIf="event" [event]="event"></ev-reviews>
+                <frk-loading-circle *ngIf="!event"></frk-loading-circle>
+            </div>
+            <!--<div class="col-sm-4">-->
+                <!--<div class="title-section color-red">-->
+                    <!--<i aria-hidden="true" class="fa fa-heart"></i>-->
+                    <!--Interested-->
+                <!--</div>-->
+                <!--<table-interested-user [eventId]="event.id"></table-interested-user>-->
+                <!--<div class="title-section color-red">-->
+                    <!--<i aria-hidden="true" class="fa fa-sign-in"></i>-->
+                    <!--Registered-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+    </div>
+</div>

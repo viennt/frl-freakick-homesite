@@ -1,0 +1,18 @@
+<div id="pinContainer" *ngIf="items && items.length"
+     [class.on-slide]="isScrollOnSlide"
+     [class.after-slide]="isScrollAfterSlide">
+    <div id="slideContainer" #slideContainer
+         [style.transform]="slideTransform">
+        <ng-content select="hp-scroll-carousel-item"></ng-content>
+    </div>
+    <div *ngIf="isShowLeftArrow"
+         class="next-slide animated fadeInRight"
+         (click)="nextSlide($event)">
+        <i class="fa fa-angle-right" aria-hidden="true"></i>
+    </div>
+    <div *ngIf="isShowRightArrow"
+         class="prev-slide animated fadeInLeft"
+         (click)="prevSlide($event)">
+        <i class="fa fa-angle-left" aria-hidden="true"></i>
+    </div>
+</div>

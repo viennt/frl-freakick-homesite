@@ -1,0 +1,27 @@
+<div class="row review-from" *ngIf="reviews">
+    <div *ngIf="shortList" class="col-sm-12">
+        <h4>Newest reviews</h4>
+    </div>
+    <div class="review" [class.col-sm-12]="shortList" [class.col-sm-6]="!shortList"
+         *ngFor="let review of reviews">
+        <div class="col-sm-12 no-padding rating-star">
+            <i class="fa" *ngFor="let star of [1, 2, 3, 4, 5]"
+               [class.fa-star-o]="review.rating < star"
+               [class.fa-star]="review.rating >= star"
+               [class.color-red]="review.rating >= star"></i>
+        </div>
+        <div class="col-sm-12 no-padding">
+            {{ review.user.name }}: {{ review.comment || 'No comment' }}
+        </div>
+    </div>
+    <div *ngIf="shortList && pagination.nextPage > 0" class="col-xs-12 see-more"
+         (click)="onOpenReviewsModal()">view all</div>
+</div>
+
+<div class="row" *ngIf="!reviews">
+    <frk-loading-circle></frk-loading-circle>
+</div>
+
+<frk-pagination *ngIf="!shortList && pagination" [data]="pagination"
+                (clickItem)="onClickPagination($event)">
+</frk-pagination>

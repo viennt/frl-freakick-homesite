@@ -1,0 +1,183 @@
+:host {
+  background: #ffffff;
+  min-height: 100vh;
+  display: block;
+}
+
+.freakick-logo img {
+  width: 50px;
+  height: 50px;
+  filter: invert(100%)
+}
+
+.copy-right {
+  width: 100%;
+  position: fixed;
+  text-align: center;
+  color: #333333;
+  bottom: 30px;
+  left: 0;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.container {
+  padding-top: 20px;
+  height: 100%;
+}
+
+.container .intro-heading {
+  text-transform: lowercase;
+}
+
+.secret-words {
+  margin-top: 20px;
+}
+
+#get-freakick {
+  font-size: 15px;
+  letter-spacing: 0.25vmin;
+  border-radius: 5px;
+  padding: 2px 8px;
+  text-decoration: none;
+  background: #65bef9;
+  color: #fcfcfc;
+  height: 30px;
+}
+
+#contact-us {
+  font-size: 15px;
+  letter-spacing: 0.25vmin;
+  border-radius: 5px;
+  padding: 2px 8px;
+  text-decoration: none;
+  background: #FEA522;
+  color: #fcfcfc;
+  height: 30px;
+}
+
+@media (max-width: 767px), (max-device-width: 767px) {
+  #or-line {
+    display: inherit;
+    padding: 10px;
+  }
+}
+
+#secret-code {
+  background: rgba(255,255,255,0.3);
+  border-radius: 5px;
+  color: #101010;
+  padding: 8px;
+  height: 30px;
+  border-color: #444;
+}
+
+#secret-code::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #545454;
+}
+#secret-code::-moz-placeholder { /* Firefox 19+ */
+  color: #545454;
+}
+#secret-code:-ms-input-placeholder { /* IE 10+ */
+  color: #545454;
+}
+#secret-code:-moz-placeholder { /* Firefox 18- */
+  color: #545454;
+}
+
+.intro-app {
+  margin-top: 40px;
+  width: 100%;
+  height: 300px;
+  position: relative;
+}
+
+.intro-app .phone {
+  height: 100%;
+  background: url(./assets/images/landing-page/phone.jpg) center center no-repeat;
+  background-size: contain;
+}
+
+.intro-app .quote {
+  position: absolute;
+  height: 40%;
+  width: calc(50% - 90px);
+}
+
+.intro-app .quote.quote-1 {
+  top: 0;
+  left: 0;
+  background: url(./assets/images/landing-page/comment-1.png) right top no-repeat;
+  background-size: contain;
+}
+
+.intro-app .quote.quote-2 {
+  top: 0;
+  right: 0;
+  background: url(./assets/images/landing-page/comment-2.png) left top no-repeat;
+  background-size: contain;
+}
+
+.intro-app .quote.quote-3 {
+  bottom: 0;
+  left: 0;
+  background: url(./assets/images/landing-page/comment-3.png) right bottom no-repeat;
+  background-size: contain;
+}
+
+.intro-app .quote.quote-4 {
+  bottom: 0;
+  right: 0;
+  background: url(./assets/images/landing-page/comment-4.png) left bottom no-repeat;
+  background-size: contain;
+}
+
+@media (max-width: 767px), (max-device-width: 767px) {
+  .intro-app {
+    height: auto;
+    display: block;
+  }
+
+  .intro-app .phone {
+    height: 300px;
+  }
+
+  .intro-app .quote {
+    position: static;
+    display: inline-block;
+    width: 45%;
+    height: 120px;
+  }
+
+  .intro-app .quote.quote-1 {
+    background: url(./assets/images/landing-page/comment-1.png) center no-repeat;
+    background-size: contain;
+  }
+
+  .intro-app .quote.quote-2 {
+    background: url(./assets/images/landing-page/comment-2.png) center no-repeat;
+    background-size: contain;
+  }
+
+  .intro-app .quote.quote-3 {
+    background: url(./assets/images/landing-page/comment-3-m.png) center no-repeat;
+    background-size: contain;
+  }
+
+  .intro-app .quote.quote-4 {
+    background: url(./assets/images/landing-page/comment-4-m.png) center no-repeat;
+    background-size: contain;
+  }
+
+  .copy-right {
+    width: 100%;
+    position: inherit;
+    text-align: center;
+    color: #333333;
+    bottom: 30px;
+    left: 0;
+    font-size: 12px;
+    font-weight: 400;
+    padding: 20px;
+  }
+}

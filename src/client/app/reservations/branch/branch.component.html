@@ -1,0 +1,160 @@
+<div class="branch-info">
+    <div class="container " *ngIf="branch && !isNotFoundBranch">
+        <div class="row">
+            <div class="col-xs-12">
+                <h2>{{ branch.name }}</h2>
+                <div class="court-info-line">
+                    <span class="branch-rating" (click)="toggleReviewForm(!isShownReviewForm)" data-toggle="tooltip"
+                          title="{{ branch.rating }} stars of {{ branch.countRating }} rated">
+                        <i class="fa" *ngFor="let star of [1, 2, 3, 4, 5]"
+                             [class.fa-star]="star <= branch.rating"
+                             [class.color-red]="star <= branch.rating"
+                             [class.fa-star-o]="star > branch.rating"></i>
+                        {{ branch.countRating }} reviews
+                        <span *ngIf="userReviewOnBranch" class="user-review">
+                            (You: {{ userReviewOnBranch.rating }}
+                            <i class="fa fa-star color-red"></i>)
+                        </span>
+                    </span>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="panel google-map hidden-xs">
+                    <div class="panel-footer no-padding">
+                        <sebm-google-map [zoom]="16" [streetViewControl]="false"
+                                         [latitude]="branch.coordinate.lat"
+                                         [longitude]="branch.coordinate.lng">
+                            <sebm-google-map-directions *ngIf="isShownDirectionMap"
+                                                        [origin]="userCurrentLocation"
+                                                        [destination]="branch.coordinate">
+                            </sebm-google-map-directions>
+                            <sebm-google-map-marker [latitude]="branch.coordinate.lat"
+                                                    [longitude]="branch.coordinate.lng">
+                            </sebm-google-map-marker>
+                        </sebm-google-map>
+                        <div class="address" data-toggle="tooltip"
+                             title="Address: {{ branch.address }}">
+                            <i class="fa fa-map-marker" aria-hidden="true"></i>
+                            {{ branch.address }}
+                        </div>
+                        <div  *ngIf="!isShownDirectionMap" class="get-direction">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            <a (click)="openMapDirection()">Get Directions</a>
+                        </div>
+                        <div *ngIf="isShownDirectionMap" class="got-direction">
+                            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                            <span>Get Directions</span>
+                        </div>
+                        <span class="phone" data-toggle="tooltip"
+                              title="Phone number: {{ branch.phoneNumber }}">
+                            <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                            {{ branch.phoneNumber }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8" *ngIf="!isShownReviewForm">
+                <ul class="nav nav-tabs">
+                    <button class="btn btn-sm"
+                            [class.active]="isShownReceivedCourts"
+                            [loadingState]="courtTabState.state"
+                            (click)="goToCourtsTab()">Fields</button>
+                    <button class="btn btn-sm"
+                            [class.active]="isShownReceivedClasses"
+                            [loadingState]="classTabState.state"
+                            (click)="goToClassesTab()">Classes</button>
+                    <button class="btn btn-sm"
+                            [class.active]="isShownReceivedFacilities"
+                            [loadingState]="facilityTabState.state"
+                            (click)="goToFacilitiesTab()">Facilities</button>
+                </ul>
+                <div class="branch-cover">
+                    <div class="court" *ngIf="isShownReceivedCourts">
+                        <img src="./assets/images/default/court.jpg">
+                    </div>
+                    <div class="class" *ngIf="isShownReceivedClasses">
+                        <img src="./assets/images/default/class.jpg">
+                    </div>
+                    <div class="facility" *ngIf="isShownReceivedFacilities">
+                        <img src="./assets/images/default/facility.jpg">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8" *ngIf="isShownReviewForm">
+            <div class="no-padding"
+                 [class.col-sm-4]="isLoggedIn"
+                 [class.col-sm-12]="!isLoggedIn">
+                <frk-show-review [branch]="branch" [shortList]="true"></frk-show-review>
+            </div>
+            <div class="col-sm-8" *ngIf="isLoggedIn">
+                <frk-review-branch
+                        *ngIf="!userReviewOnBranch"
+                        [branch]="branch"
+                        (success)="reloadUserRating($event)"
+                        (close)="toggleReviewForm(false)">
+                </frk-review-branch>
+                <frk-update-review-branch
+                        *ngIf="userReviewOnBranch"
+                        [userReviewData]="userReviewOnBranch"
+                        (success)="reloadUserRating($event)"
+                        (close)="toggleReviewForm(false)">
+                </frk-update-review-branch>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <div class="container" *ngIf="!branch && isNotFoundBranch">
+        Could not find branch!
+    </div>
+
+    <div class="container loading" *ngIf="!branch && !isNotFoundBranch">
+        <frk-loading-circle></frk-loading-circle>
+    </div>
+</div>
+
+<!-- Searching courts results -->
+<frk-received-branch-courts
+    *ngIf="branch && availableSports"
+    [class.hide]="!isShownReceivedCourts"
+    [availableSports]="availableSports"
+    [paginationPage]="0"
+    [branch]="branch"
+    (nonResult)="disableCourtsTab()"
+    (haveResult)="enableCourtsTab()">
+</frk-received-branch-courts>
+
+<!-- Searching classes results -->
+<frk-received-branch-classes
+    *ngIf="branch && availableSports && availableGroups"
+    [class.hide]="!isShownReceivedClasses"
+    [availableSports]="availableSports"
+    [availableGroups]="availableGroups"
+    [paginationPage]="0"
+    [branch]="branch"
+    (nonResult)="disableClassesTab()"
+    (haveResult)="enableClassesTab()">
+</frk-received-branch-classes>
+
+<!-- Searching facilities results -->
+<frk-received-branch-facilities
+    *ngIf="branch && availableSports"
+    [class.hide]="!isShownReceivedFacilities"
+    [availableSports]="availableSports"
+    [paginationPage]="0"
+    [branch]="branch"
+    (nonResult)="disableFacilitiesTab()"
+    (haveResult)="enableFacilitiesTab()">
+</frk-received-branch-facilities>
+
+<div *ngIf="branch" class="modal fade" id="branchReviewsModal"
+     tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">Reviews</div>
+            <div class="modal-body">
+                <frk-show-review [branch]="branch"></frk-show-review>
+            </div>
+        </div>
+    </div>
+</div>

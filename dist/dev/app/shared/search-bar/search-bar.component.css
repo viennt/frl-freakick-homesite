@@ -1,0 +1,59 @@
+
+.form-group {
+  margin: 0 0 15px 0;
+  float: left;
+  width: 100%;
+}
+
+.search-box {
+  display: inline-block;
+  color: black;
+  font-size: 14px;
+  padding: 0;
+}
+
+.search-box.keyword  {
+  border-right: none;
+  border-radius: 2px 0 0 2px;
+}
+
+.search-box.location  {
+  border-right: none;
+  border-radius: 0;
+}
+
+ng-select {
+  height: 34px;
+  color: #101010;
+  font-size: 13px;
+}
+
+.search-btn {
+  height: 34px;
+  color: #fcfcfc;
+  border-radius: 0 2px 2px 0;
+}
+
+:host-context(.reservations) ng-select {
+  border: 1px solid #f33c4a;
+}
+
+:host-context(.reservations) .search-btn {
+  background: #f33c4a;
+}
+
+:host-context(.reservations) .search-btn:hover {
+  background-color: #da3743;
+}
+
+:host-context(.events) ng-select {
+  border: 1px solid #205081;
+}
+
+:host-context(.events) .search-btn {
+  background: #205081;
+}
+
+:host-context(.events) .search-btn:hover {
+  background-color: #183681;
+}

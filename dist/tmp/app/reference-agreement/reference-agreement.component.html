@@ -1,0 +1,30 @@
+<sd-navbar class="events"></sd-navbar>
+
+<section>
+    <div class="terms">
+        <h2 >TERMS OF SERVICE</h2>
+        <div class="parent-term">
+            <p>Those applying for a Non-Athlete or Adult Athlete membership will have a background check performed, therefore, adult applications will not be approved instantly and must wait for the background check to complete before receiving your Branch's Membership Number. This process usually takes anywhere from 1 to 10 business days to complete (but may take longer in some cases).</p>
+            <p>Insurance is a benefit of membership and is effective as of the date payment is received for youth athletes and as of the date the background check passes for adults.</p>
+            <p>Memberships must always be paid and member number issued prior to participation in any activity (including practices and try-outs).</p>
+
+            <p>--------</p>
+
+            <p>By approving information above I hereby authorize  to perform a background screening for my adult membership, accept and acknowledge all terms and conditions presented to me during the application process.</p>
+            <p class="pull-right">NOTE: This must be signed by the person applying for membership or a parentally approved representative for youth applicants.</p>
+        </div>
+        <div class="agree-terms">
+            <label class="checkbox col-md-8">
+                <input (change)="isChecked = !isChecked" class="checkbox-term" type="checkbox">
+                I have read these terms of service.
+            </label>
+            <div>
+                <button class="btn btn-success pull-right"
+                        [disabled]="!isChecked"
+                        (click)="submit()">Agree to the teams</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<sd-new-footer></sd-new-footer>

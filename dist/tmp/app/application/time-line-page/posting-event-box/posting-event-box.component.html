@@ -1,0 +1,271 @@
+<div *ngIf="isShownScheduleEventForm" class="overlay animated fadeIn"
+     (click)="closeScheduleEventForm($event)"></div>
+<div class="card event-main-form">
+    <div class="card__content">
+        <!-- Event Title -->
+        <div class="schedule-event">
+            <div class="schedule-event-body">
+                <div class="user-image border-default">
+                    <img [src]="userImage" alt="">
+                </div>
+                <div class="event-title">
+                    <input name="event-title" [(ngModel)]="inputEventName"
+                           placeholder="What's your event name?"
+                           (click)="openScheduleEventForm($event)">
+                </div>
+            </div>
+        </div>
+        <!-- Event Date Time -->
+        <div class="schedule-event animated"
+             [class.hide]="!isShownScheduleEventForm"
+             [class.fadeIn]="isShownScheduleEventForm">
+            <div class="schedule-event-body">
+                <form class="date-time">
+                    <div class="row">
+                        <div [class.col-sm-6]="inputIsAllDateEvent"
+                             [class.col-sm-3]="!inputIsAllDateEvent">
+                            <div class="form-group">
+                                <label class="font-grey-cascade font-sm" for="event-start-day">From</label>
+                                <div class="input-icon right">
+                                    <input id="event-start-day"
+                                           class="form-control-event-date form-control input-sm border-default margin-bottom-5"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!inputIsAllDateEvent" class="col-sm-3 animated fadeIn">
+                            <div class="form-group">
+                                <label class="font-white font-sm hidden-xs" for="event-start-time">.</label>
+                                <div class="input-icon right">
+                                    <select id="event-start-time" [(ngModel)]="inputStartTime"
+                                            class="form-control-event-date form-control input-sm border-default margin-bottom-5"
+                                            required name="start-time">
+                                        <option *ngFor="let time of availableTimes"
+                                                value="{{ time.value }}">
+                                            {{ time.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div [class.col-sm-6]="inputIsAllDateEvent"
+                             [class.col-sm-3]="!inputIsAllDateEvent">
+                            <div class="form-group">
+                                <label class="font-grey-cascade font-sm" for="event-start-day">Until</label>
+                                <div class="input-icon right">
+                                    <input id="event-end-day"
+                                           class="form-control-event-date form-control input-sm border-default margin-bottom-5"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="!inputIsAllDateEvent" class="col-sm-3 animated fadeIn">
+                            <div class="form-group">
+                                <label class="font-white font-sm hidden-xs" for="event-end-time">.</label>
+                                <div class="input-icon right">
+                                    <select id="event-end-time" [(ngModel)]="inputEndTime"
+                                            class="form-control-event-date form-control input-sm border-default margin-bottom-5"
+                                            required name="end-time">
+                                        <option *ngFor="let time of availableTimes"
+                                                value="{{ time.value }}">
+                                            {{ time.name }}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!-- Event Description -->
+        <div *ngIf="isShownScheduleEventForm" class="schedule-event animated fadeIn">
+            <div class="schedule-event-body">
+                <div class="event-description border-default">
+                    <form class="form-group form-md-line-input">
+                        <textarea class="form-control" rows="3" placeholder=""
+                                  [(ngModel)]="inputDescription" name="description"></textarea>
+                        <label class="font-grey-cascade font-sm">Description</label>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Event Repeat Frequency -->
+        <div *ngIf="isShownScheduleEventForm && inputEventRepeatType" class="schedule-event animated fadeIn">
+            <div class="schedule-event-body">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group">
+                            <label class="font-grey-cascade font-sm"
+                                   for="event-repeat-frequency">Repeat every</label>
+                            <select id="event-repeat-frequency" required name="start-time"
+                                    class="form-control-event-date form-control input-sm border-default margin-bottom-5"
+                                    [(ngModel)]="inputEventRepeatFrequency">
+                                <option *ngFor="let time of availableFrequency"
+                                        value="{{ time }}">
+                                    {{ time }}
+                                    <span *ngIf="inputEventRepeatType === eventRepeatType.Daily">days</span>
+                                    <span *ngIf="inputEventRepeatType === eventRepeatType.Weekly">weeks</span>
+                                    <span *ngIf="inputEventRepeatType === eventRepeatType.Monthly">months</span>
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div *ngIf="inputEventRepeatType === eventRepeatType.Weekly" class="col-sm-9 event-repeat-on">
+                        <div class="form-group">
+                            <label class="font-grey-cascade font-sm">Repeat on</label>
+                            <div class="mt-checkbox-inline">
+                                <label class="mt-checkbox schedule-check-box">
+                                    <input type="checkbox" [checked]="inputIsOccurSunday"
+                                           (change)="inputIsOccurSunday = !inputIsOccurSunday"> S
+                                    <span></span>
+                                </label>
+                                <label class="mt-checkbox schedule-check-box">
+                                    <input type="checkbox" [checked]="inputIsOccurMonday"
+                                           (change)="inputIsOccurMonday = !inputIsOccurMonday"> M
+                                    <span></span>
+                                </label>
+                                <label class="mt-checkbox schedule-check-box">
+                                    <input type="checkbox" [checked]="inputIsOccurTuesday"
+                                           (change)="inputIsOccurTuesday = !inputIsOccurTuesday"> T
+                                    <span></span>
+                                </label>
+                                <label class="mt-checkbox schedule-check-box">
+                                    <input type="checkbox" [checked]="inputIsOccurWednesday"
+                                           (change)="inputIsOccurWednesday = !inputIsOccurWednesday"> W
+                                    <span></span>
+                                </label>
+                                <label class="mt-checkbox schedule-check-box">
+                                    <input type="checkbox" [checked]="inputIsOccurThursday"
+                                           (change)="inputIsOccurThursday = !inputIsOccurThursday"> T
+                                    <span></span>
+                                </label>
+                                <label class="mt-checkbox schedule-check-box">
+                                    <input type="checkbox" [checked]="inputIsOccurFriday"
+                                           (change)="inputIsOccurFriday = !inputIsOccurFriday"> F
+                                    <span></span>
+                                </label>
+                                <label class="mt-checkbox schedule-check-box">
+                                    <input type="checkbox" [checked]="inputIsOccurSaturday"
+                                           (change)="inputIsOccurSaturday = !inputIsOccurSaturday"> S
+                                    <span></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Event Notification -->
+        <div *ngIf="isShownScheduleEventForm && inputNotificationBy" class="schedule-event animated fadeIn">
+            <div class="schedule-event-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <label class="font-grey-cascade font-sm"
+                                   for="event-repeat-frequency">Remind with
+                                <span *ngIf="inputNotificationBy !== 2" class="bold">message</span>
+                                <span *ngIf="inputNotificationBy === 2" class="bold">email</span>
+                                before</label>
+                            <div class="input-group">
+                                <input type="number" autofocus [(ngModel)]="inputNotificationBeforeHours"
+                                       class="form-control-event-date form-control input-sm border-default">
+                                <span class="input-group-addon">hours</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Event Images -->
+        <div *ngIf="isShownScheduleEventForm && inputEventImages && inputEventImages.length" class="schedule-event animated fadeIn">
+            <div class="schedule-event-body">
+                <div><label class="font-grey-cascade font-sm">Images</label></div>
+                <div *ngFor="let image of inputEventImages" class="event-image">
+                    <img [src]="serverUrl + '/assets/' + image" (error)="$event.target.style.display = 'none'">
+                    <div class="image-overlay">
+                        <i (click)="onClickRemoveEventImage(image)"
+                           class="fa fa-remove font-dark pull-right"></i>
+                    </div>
+                </div>
+                <div class="event-image add-more" (click)="onClickAddMoreEventImage($event)">
+                    <img src="./assets/images/application/add-more.jpg">
+                </div>
+            </div>
+        </div>
+        <!-- Event Age Groups -->
+        <div *ngIf="isShownScheduleEventForm && hasEventGroups" class="schedule-event age-group animated fadeIn">
+            <div class="schedule-event-body">
+                <app-age-group-form-group
+                        [(eventGroups)]="inputEventGroups"
+                        [availableGroups]="availableGroups">
+                </app-age-group-form-group>
+            </div>
+        </div>
+        <!-- Event Address -->
+        <div *ngIf="isShownScheduleEventForm && hasEventAddress" class="schedule-event animated fadeIn">
+            <div class="schedule-event-body">
+                <label class="font-grey-cascade font-sm">Address</label>
+                <input id="address" class="form-control-event-date form-control input-sm border-default"
+                       autocomplete="off" name="address" placeholder="Event address. Eg, Boston, MA, USA"
+                       required #address="ngModel" minlength="1" maxlength="255" type="text" autofocus
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                       [(ngModel)]="inputEventAddress"
+                       (keyup)="onChangeEventAddress($event)">
+                <div *ngIf="suggestedAddress && suggestedAddress.length"
+                     class="dropdown-menu address-suggestion bg-white">
+                    <ul class="feeds">
+                        <li *ngFor="let address of suggestedAddress">
+                            <div class="col1">
+                                <div class="cont">
+                                    <div class="cont-col2" (click)="onSelectAddress(address)">
+                                        <a class="desc font-grey-cascade">
+                                            {{ address.address }}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- Event Form Options -->
+        <div *ngIf="isShownScheduleEventForm" class="schedule-event form-options animated fadeIn">
+            <div class="schedule-event-body">
+                <div class="row">
+                    <div class="col-xs-6 col-sm-4">
+                        <app-all-day-button [(isAllDay)]="inputIsAllDateEvent"></app-all-day-button>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <app-schedule-button [(repeatType)]="inputEventRepeatType"></app-schedule-button>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <app-reminder-button [(notificationBy)]="inputNotificationBy"></app-reminder-button>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <app-image-button #imageButton [(eventImages)]="inputEventImages"></app-image-button>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <app-age-group-button [(hasGroups)]="hasEventGroups"></app-age-group-button>
+                    </div>
+                    <div class="col-xs-6 col-sm-4">
+                        <app-address-button [(hasAddress)]="hasEventAddress"></app-address-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Event Form Footer -->
+        <div class="schedule-event form-footer">
+            <div class="schedule-event-footer">
+                <div class="pull-right">
+                    <div class="btn btn-xs">
+                        <i class="icon-user"></i> Personal
+                    </div>
+                    <div class="btn blue-madison btn-xs"
+                         (click)="onSubmitScheduleEvent($event)">
+                        Create event
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+:host {
+    min-height: 100vh;
+    display: block;
+}
+
+#overlay {
+    width: 100%;
+    height: 70vh;
+    left: 0;
+    top: 0;
+}
+
+#overlay.non-fixed {
+    position: absolute;
+    top: auto;
+    bottom: 0;
+}
+
+#overlay.blur {
+    filter: blur(5px)
+}
+
+#overlay {
+    z-index: -2;
+    position: absolute;
+    background: url(./assets/images/guild-page/HomePageDistriktBg.jpg) no-repeat center top;
+    background-color: #000000;
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+}
+
+.home-section {
+    background: #fcfcfc;
+    overflow: hidden;
+}
+
+header.first-section {
+    overflow: hidden;
+    height: 70vh;
+    width: 100%;
+    background: transparent;
+    position: relative;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+}
+
+header.first-section > .container {
+    height: 100%;
+}
+
+header .container .intro-text {
+    margin: 40vh auto auto auto;
+    padding: 3vmin 0;
+    line-height: 1.3;
+}
+
+header .container .intro-text .intro-heading {
+    color: #31160D;
+    text-shadow: 0 0 5px rgb(253, 253, 241);
+    text-transform: lowercase;
+    letter-spacing: -1px;
+    font-size: 9vmin;
+    text-align: left;
+    width: 50%;
+}
+
+header .container .description-text {
+    margin: 20vh auto auto auto;
+    font-size: 25px;
+    width: 90%;
+    padding: 0;
+    color: #303030;
+    line-height: 1.3;
+}
+
+@media (max-width: 767px) {
+    header .container .description-text {
+        margin: 20vh auto auto auto;
+        font-size: 20px;
+        width: 100%;
+    }
+}
+
+.main-description {
+    font-size: 5vmin;
+    padding: 20px;
+}
+
+.sub-description {
+    font-size: 2.5vmin;
+}

@@ -1,0 +1,19 @@
+<div *ngIf="events" class="posts posts--cards post-grid row">
+    <div *ngFor="let event of events">
+        <app-template-time-line-card-standard
+                [event]="event"
+                *ngIf="event.eventType === eventTypes.Sponsored || event.eventType === eventTypes.Branch
+                       || event.eventType === eventTypes.GuildTeam || event.eventType === eventTypes.LeagueTeam">
+        </app-template-time-line-card-standard>
+
+        <app-template-time-line-card-matchup
+                [event]="event"
+                *ngIf="event.eventType === eventTypes.LeagueMatchup && event.matchup">
+        </app-template-time-line-card-matchup>
+
+        <app-template-time-line-card-guild-game
+                [event]="event"
+                *ngIf="event.eventType === eventTypes.GuildGame && event.guildGame">
+        </app-template-time-line-card-guild-game>
+    </div>
+</div>

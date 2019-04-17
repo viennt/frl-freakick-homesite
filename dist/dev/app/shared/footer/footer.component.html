@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="">
+        <div class="first-line">
+            <div class="col-sm-4 col-sm-push-8 no-padding">
+                <ul class="list-inline social-buttons">
+                    <li><a><i class="fa fa-twitter"></i></a></li>
+                    <li><a><i class="fa fa-facebook"></i></a></li>
+                    <li><a><i class="fa fa-instagram"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-sm-8 col-sm-pull-4 no-padding">
+                <div class="row">
+                    <div class="col-sm-12 relative-link">
+                        <a [routerLink]="['/social']">Social</a>
+                        <a href="{{ externalUrl.BUSINESS_URL }}">Business</a>
+                        <a [routerLink]="['/leagues']">Leagues</a>
+                        <a [routerLink]="['/brands']">Brands</a>
+                        <a [routerLink]="['/reservations/intro']">Reservations</a>
+                        <a [routerLink]="['/initiative']">Initiative</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="">
+        <div class="second-line">
+            <div class="col-sm-4 col-sm-push-8 no-padding">
+                <div class="row">
+                    <div class="col-sm-12 refer">
+                        <a [routerLink]="['/about']">About</a>
+                        <a (click)="contactForm.open()">Contact Us</a>
+                        <a [routerLink]="['/about/privacy']">Privacy</a>
+                        <a [routerLink]="['/legal/terms']">Terms of Use</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8 col-sm-pull-4 no-padding">
+                <div class="row">
+                    <div class="col-sm-12 copyright">
+                        <span class="flat hidden-xs"><img src="./assets/images/home-page/us_sml.png" alt="United States" width="14" height="10"></span>
+                        <span class="country hidden-xs">United States </span>
+                        <span>Copyright &copy; 2018 Freakick, Inc. All Rights Reserved.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<frk-contact-form #contactForm></frk-contact-form>

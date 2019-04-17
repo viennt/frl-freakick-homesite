@@ -1,0 +1,19 @@
+<modal #modal [animation]="false"
+       (onClose)="onCloseModal($event)"
+       (onDismiss)="onCloseModal($event)">
+    <modal-body>
+        <div class="frk-popup">
+            <div class="text-center">
+                <img alt="Brand" src="./assets/images/logo/freakick_logo_dark.png" class="frk-logo">
+                <h3 class="font-green">Success!</h3>
+            </div>
+            <div class="margin-top-30">
+                <div>Thank you for contacting us. We will respond to you as soon as possible.</div>
+            </div>
+            <div class="text-left margin-top-30">
+                <div>Best of luck!</div>
+                <div>- Freakick team</div>
+            </div>
+        </div>
+    </modal-body>
+</modal>

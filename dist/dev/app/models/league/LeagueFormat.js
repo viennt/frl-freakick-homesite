@@ -1,0 +1,11 @@
+"use strict";
+var LeagueFormat = (function () {
+    function LeagueFormat(options) {
+        this.id = options && options.id || -1;
+        this.code = options && options.code || 'Unknown league format';
+    }
+    return LeagueFormat;
+}());
+exports.LeagueFormat = LeagueFormat;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RlbHMvbGVhZ3VlL0xlYWd1ZUZvcm1hdC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBS0E7SUFNRSxzQkFBWSxPQUF1QjtRQUNqQyxJQUFJLENBQUMsRUFBRSxHQUFHLE9BQU8sSUFBSSxPQUFPLENBQUMsRUFBRSxJQUFJLENBQUMsQ0FBQyxDQUFDO1FBQ3RDLElBQUksQ0FBQyxJQUFJLEdBQUcsT0FBTyxJQUFJLE9BQU8sQ0FBQyxJQUFJLElBQUksdUJBQXVCLENBQUM7SUFDakUsQ0FBQztJQUNILG1CQUFDO0FBQUQsQ0FWQSxBQVVDLElBQUE7QUFWWSxvQkFBWSxlQVV4QixDQUFBIiwiZmlsZSI6ImFwcC9tb2RlbHMvbGVhZ3VlL0xlYWd1ZUZvcm1hdC5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBpbnRlcmZhY2UgSUxlYWd1ZUZvcm1hdCB7XG4gIGlkOiBudW1iZXI7XG4gIGNvZGU6IHN0cmluZztcbn1cblxuZXhwb3J0IGNsYXNzIExlYWd1ZUZvcm1hdCB7XG4gIHB1YmxpYyBpZDogbnVtYmVyO1xuICBwdWJsaWMgY29kZTogc3RyaW5nO1xuXG4gIGNvbnN0cnVjdG9yKClcbiAgY29uc3RydWN0b3Iob3B0aW9uczogSUxlYWd1ZUZvcm1hdClcbiAgY29uc3RydWN0b3Iob3B0aW9ucz86IElMZWFndWVGb3JtYXQpIHtcbiAgICB0aGlzLmlkID0gb3B0aW9ucyAmJiBvcHRpb25zLmlkIHx8IC0xO1xuICAgIHRoaXMuY29kZSA9IG9wdGlvbnMgJiYgb3B0aW9ucy5jb2RlIHx8ICdVbmtub3duIGxlYWd1ZSBmb3JtYXQnO1xuICB9XG59XG4iXX0=

@@ -1,0 +1,104 @@
+<a class="feature guild"
+   (mouseover)="guildImage.src = './assets/images/home-page/HomePageGuildHover.jpg'"
+   (mouseleave)="guildImage.src = './assets/images/home-page/HomePageGuild.jpg'"
+   [routerLink]="['/guild']">
+    <div class="container">
+        <img #guildImage [src]="'./assets/images/home-page/HomePageGuild.jpg'" alt="">
+    </div>
+</a>
+<section class="feature social">
+    <div class="container">
+        <div frk-scroll animation="fadeInUp" class="feature-image col-sm-6 col-sm-push-6">
+            <div class="image-content">
+                <div class="phone">
+                    <a class="learn-more sports" [routerLink]="['/social']">
+                        Sports <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+                    <a class="learn-more events" [routerLink]="['/events']">
+                        Events <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="feature-content col-sm-6 col-sm-pull-6">
+            <div class="sub-content" [class.show-children]="false">
+                <div class="title">{{ socialFeature.title }}</div>
+                <div class="description">{{ socialFeature.description[0] }}</div>
+                <div class="sub-description">
+                    {{ socialFeature.description[1] }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="feature social child">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 text-center"
+                 *ngFor="let feature of socialFeature.children">
+                <div class="child-feature-image">
+                    <img [src]="'./assets/images/home-page/icon-' + feature.id + '.png'" alt="">
+                </div>
+                <div class="child-feature-title">
+                    {{ feature.title }}
+                </div>
+                <div class="child-feature-description">
+                    <span *ngFor="let des of feature.description">{{ des }} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<a class="feature distrikt"
+   (mouseover)="distriktImage.src = './assets/images/home-page/HomePageDistriktRed.jpg'"
+   (mouseleave)="distriktImage.src = './assets/images/home-page/HomePageDistrikt.jpg'"
+   [routerLink]="['/distrikt']">
+    <div class="container">
+        <img #distriktImage [src]="'./assets/images/home-page/HomePageDistrikt.jpg'" alt="">
+    </div>
+</a>
+<section class="feature leagues">
+    <div class="container">
+        <div frk-scroll animation="fadeInLeft" class="feature-image col-sm-6">
+            <div class="image-content">
+                <div class="shadow"></div>
+                <div class="phone">
+                    <div class="screen-shot"></div>
+                </div>
+            </div>
+        </div>
+        <div class="feature-content col-sm-6">
+            <div class="sub-content" [class.show-children]="false">
+                <div class="title">{{ leaguesFeature.title }}</div>
+                <div class="description">{{ leaguesFeature.description[0] }} <br/> {{ leaguesFeature.description[1] }}</div>
+                <div class="sub-description">
+                    {{ leaguesFeature.description[2] }}
+                    <p><a class="learn-more" [routerLink]="['/leagues']">
+                        Learn more <i class="fa fa-angle-right" aria-hidden="true"></i>
+                    </a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="feature leagues child">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 text-center"
+                 *ngFor="let feature of leaguesFeature.children">
+                <div class="child-feature-image">
+                    <img [src]="'./assets/images/home-page/icon-' + feature.id + '.png'" alt="">
+                </div>
+                <div class="child-feature-title">
+                    {{ feature.title }}
+                </div>
+                <div class="child-feature-description">
+                    <span *ngFor="let des of feature.description">{{ des }} </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<hp-business-section></hp-business-section>
+<hp-brand-section></hp-brand-section>
+<hp-reservations-section></hp-reservations-section>

@@ -1,0 +1,66 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title" id="myModalLabel">Schedule</h4>
+    </div>
+    <div class="modal-body field-information">
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th></th>
+          <th>Time</th>
+          <th>Address</th>
+          <th>Field/Room/Location</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngIf="classSchedule.monday">
+          <td><div class="date"><span>Monday</span></div></td>
+          <td><span class="time">{{ classSchedule.monday.from }} - {{ classSchedule.monday.to }}</span></td>
+          <td>{{ classSchedule.monday.field.branch.address }}</td>
+          <td>{{ classSchedule.monday.field.fieldCode }}</td>
+        </tr>
+        <tr *ngIf="classSchedule.tuesday">
+          <td><div class="date"><span>Tuesday</span></div></td>
+          <td><span class="time">{{ classSchedule.tuesday.from }} - {{ classSchedule.tuesday.to }}</span></td>
+          <td>{{ classSchedule.tuesday.field.branch.address }}</td>
+          <td>{{ classSchedule.tuesday.field.fieldCode }}</td>
+        </tr>
+        <tr *ngIf="classSchedule.wednesday">
+          <td><div class="date"><span>Wednesday</span></div></td>
+          <td><span class="time">{{ classSchedule.wednesday.from }} - {{ classSchedule.wednesday.to }}</span></td>
+          <td>{{ classSchedule.wednesday.field.branch.address }}</td>
+          <td>{{ classSchedule.wednesday.field.fieldCode }}</td>
+        </tr>
+        <tr *ngIf="classSchedule.thursday">
+          <td><div class="date"><span>Thursday</span></div></td>
+          <td><span class="time">{{ classSchedule.thursday.from }} - {{ classSchedule.thursday.to }}</span></td>
+          <td>{{ classSchedule.thursday.field.branch.address }}</td>
+          <td>{{ classSchedule.thursday.field.fieldCode }}</td>
+        </tr>
+        <tr *ngIf="classSchedule.friday">
+          <td><div class="date"><span>Friday</span></div></td>
+          <td><span class="time">{{ classSchedule.friday.from }} - {{ classSchedule.friday.to }}</span></td>
+          <td>{{ classSchedule.friday.field.branch.address }}</td>
+          <td>{{ classSchedule.friday.field.fieldCode }}</td>
+        </tr>
+        <tr *ngIf="classSchedule.saturday">
+          <td><div class="date"><span>Saturday</span></div></td>
+          <td><span class="time">{{ classSchedule.saturday.from }} - {{ classSchedule.saturday.to }}</span></td>
+          <td>{{ classSchedule.saturday.field.branch.address }}</td>
+          <td>{{ classSchedule.saturday.field.fieldCode }}</td>
+        </tr>
+        <tr *ngIf="classSchedule.sunday">
+          <td><div class="date"><span>Sunday</span></div></td>
+          <td><span class="time">{{ classSchedule.sunday.from }} - {{ classSchedule.sunday.to }}</span></td>
+          <td>{{ classSchedule.sunday.field.branch.address }}</td>
+          <td>{{ classSchedule.sunday.field.fieldCode }}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

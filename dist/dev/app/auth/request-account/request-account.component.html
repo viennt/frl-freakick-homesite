@@ -1,0 +1,130 @@
+<!-- <sd-navbar class="home"></sd-navbar> -->
+<div class="login">
+    <div class="user-login-5">
+        <div class="row bs-reset">
+            <div class="hidden-xs col-sm-6 col-xs-12 bs-reset mt-login-5-bsfix bg-white bg-font-dark">
+                <div class="login-bg"
+                     style="background: none; position: relative; z-index: 0;">
+                    <img class="login-logo"
+                         src="./assets/images/logo/freakick_logo_light.png">
+                    <div class="backstretch">
+                        <div class="backstretch-center">
+                            <h2>Build the <strong>Community</strong></h2>
+                            <h2>Grow your <strong>Potential</strong></h2>
+                            <h2>Be a local <strong>Everywhere</strong></h2>
+                        </div>
+                        <!-- <div class="play-button"></div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 col-xs-12 login-container bs-reset mt-login-5-bsfix bg-white bg-font-white">
+                <div class="login-form-step height-100">
+                    <div class="login-form-step-center height-100">
+                        <div class="form height-100 register-form">
+                            <div class="form-body register-form-center">
+                                <form class="login-form" #emailForm="ngForm">
+                                    <div *ngIf="isSuccess">
+                                        <div class="note note-info text-center">
+                                            <h1 class="font-green-jungle"><i class="fa fa-check-circle-o" aria-hidden="true"></i></h1>
+                                            <div class="h3">Thank You!</div>
+                                            <div>Your request is being reviewed. <br> One of our representatives will get in touch with you shortly.</div>
+                                            <div class="h4">Be a local anywhere you go!</div>
+                                        </div>
+                                        <div>
+                                            <button (click)="onCLickBackToHome()" class="btn btn-block green-jungle uppercase">
+                                                <i class="fa fa-home"></i>
+                                                Back to Home
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div *ngIf="!isSuccess">
+                                        <div class="font-dark margin-bottom-25">
+                                            <div class="logo text-center margin-bottom-25">
+                                                <a [routerLink]="['/']">
+                                                    <img src="./assets/images/logo/freakick_logo_dark.png" alt="" width="100"/> </a>
+                                            </div>
+                                            <div class="h3 thin">Join Freakick today</div>
+                                            <div class="h2">Be a local anywhere you go</div>
+                                        </div>
+                                        <div class="font-dark form-group"
+                                             [class.has-error]="!emailModel.valid && emailModel.dirty">
+                                            <input #emailModel="ngModel" name="email" required maxlength="55"
+                                                   autocomplete="off" type="email" placeholder="Email (*)"
+                                                   class="form-control form-control-solid placeholder-no-fix input-lg"
+                                                   pattern="^[a-z0-9]+(\.[_a-z0-9]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,15})$"
+                                                   [(ngModel)]="userEmail"/>
+                                            <span *ngIf="!emailModel.valid && emailModel.dirty"
+                                                  class="help-block">Invalid email</span>
+                                        </div>
+                                        <div class="font-dark form-group"
+                                             [class.has-error]="!fullNameModel.valid && fullNameModel.dirty">
+                                            <input #fullNameModel="ngModel" name="fullName" required maxlength="55"
+                                                   autocomplete="off" placeholder="Full name (*)"
+                                                   class="form-control form-control-solid placeholder-no-fix input-lg"
+                                                   [(ngModel)]="fullName"/>
+                                            <span *ngIf="!fullNameModel.valid && fullNameModel.dirty"
+                                                  class="help-block">Invalid full name</span>
+                                        </div>
+                                        <div class="font-dark form-group"
+                                             [class.has-error]="!userNameModel.valid && userNameModel.dirty">
+                                            <input #userNameModel="ngModel" name="username" required maxlength="55"
+                                                   autocomplete="off" placeholder="Username (*)"
+                                                   class="form-control form-control-solid placeholder-no-fix input-lg"
+                                                   [(ngModel)]="username"/>
+                                            <span *ngIf="!userNameModel.valid && userNameModel.dirty"
+                                                  class="help-block">Invalid username</span>
+                                        </div>
+                                        <div class="font-dark form-group"
+                                             [class.has-error]="!passwordModel.valid && passwordModel.dirty">
+                                            <input #passwordModel="ngModel" name="password" required maxlength="55"
+                                                   autocomplete="off" type="password" placeholder="Password (*)"
+                                                   class="form-control form-control-solid placeholder-no-fix input-lg"
+                                                   [(ngModel)]="password"
+                                                   pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"/>
+                                            <span *ngIf="!passwordModel.valid && passwordModel.dirty"
+                                                  class="help-block">Your password must have: At least one number and a symbol, upper & lower letters, and 8 or more characters.</span>
+                                        </div>
+                                        <div class="font-dark row">
+                                            <div class="col-xs-4">
+                                                <button class="btn btn-circle blue bold"
+                                                        [disabled]="!emailForm.form.valid || isLoading"
+                                                        (click)="submitForm(userEmail)">
+                                                    <span>Get started</span>
+                                                    <i *ngIf="isLoading" class="fa fa-circle-o-notch fa-spin"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-xs-8 text-right">
+                                                <div class="btn">
+                                                    <span [routerLink]="['/', 'login']">Have an account?</span>
+                                                    <a [routerLink]="['/', 'login']">Log in</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid footer">
+                <ul>
+                    <li class="thin font-300"><a [routerLink]="['/about']">About</a></li>
+                    <li class="thin font-300">Platform</li>
+                    <!--<li class="thin font-300"><a [routerLink]="['/social']">Social</a></li>-->
+                    <li class="thin font-300"><a href="{{ externalUrl.BUSINESS_URL }}">Business</a></li>
+                    <!--<li class="thin font-300"><a [routerLink]="['/leagues']">Leagues</a></li>-->
+                    <!--<li class="thin font-300"><a [routerLink]="['/brands']">Brands</a></li>-->
+                    <li class="thin font-300"><a [routerLink]="['/education']">Education</a></li>
+                    <!--<li class="thin font-300"><a [routerLink]="['/initiative']">Initiative</a></li>-->
+                    <li class="thin font-300"><a [routerLink]="['/legal/terms']">Terms</a></li>
+                    <li class="thin font-300"><a [routerLink]="['/about/privacy']">Privacy</a></li>
+                    <li class="thin font-300"><a [routerLink]="['/contact']">Contact</a></li>
+                    <li class="thin font-300">Copyright © 2018 Freakick Inc.</li>
+                </ul>
+            </div>
+    </div>
+</div>
+
+<frk-contact-form #contactForm></frk-contact-form>

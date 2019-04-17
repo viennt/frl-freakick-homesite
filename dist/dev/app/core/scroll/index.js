@@ -1,0 +1,7 @@
+"use strict";
+var scroll_directive_1 = require('./scroll-directive');
+exports.ScrollDirective = scroll_directive_1.ScrollDirective;
+var scroll_module_1 = require('./scroll.module');
+exports.ScrollModule = scroll_module_1.ScrollModule;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jb3JlL3Njcm9sbC9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsaUNBQWdDLG9CQUFvQixDQUFDO0FBQTVDLDZEQUE0QztBQUNyRCw4QkFBNkIsaUJBQWlCLENBQUM7QUFBdEMsb0RBQXNDIiwiZmlsZSI6ImFwcC9jb3JlL3Njcm9sbC9pbmRleC5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCB7IFNjcm9sbERpcmVjdGl2ZSB9IGZyb20gJy4vc2Nyb2xsLWRpcmVjdGl2ZSc7XG5leHBvcnQgeyBTY3JvbGxNb2R1bGUgfSBmcm9tICcuL3Njcm9sbC5tb2R1bGUnO1xuIl19

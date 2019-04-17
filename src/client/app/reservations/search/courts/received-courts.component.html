@@ -1,0 +1,159 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="google-map hidden-xs" *ngIf="receivedCourts && receivedCourts.length">
+                <div class="panel panel-default">
+                    <div class="panel-footer no-padding">
+                        <sebm-google-map [latitude]="receivedCourts[0].field.branch.coordinate.lat"
+                                         [longitude]="receivedCourts[0].field.branch.coordinate.lng">
+                            <sebm-google-map-marker *ngFor="let receivedCourt of receivedCourts; let i = index"
+                                                    [latitude]="receivedCourt.field.branch.coordinate.lat"
+                                                    [longitude]="receivedCourt.field.branch.coordinate.lng">
+                            </sebm-google-map-marker>
+                        </sebm-google-map>
+                    </div>
+                </div>
+            </div>
+            <div class="filter no-select">
+                <div class="time-group">
+                    <div class="title color-red"><i class="fa fa-clock-o" aria-hidden="true"></i> Time</div>
+                    <div class="col-md-12 no-padding">
+                        <input type="text" class="form-group form-control" id="court-daterange"/>
+                        <i class="glyphicon glyphicon-calendar fa fa-calendar color-red"
+                           onclick="document.querySelector('#court-daterange').click()"></i>
+                    </div>
+                    <div class="col-md-12 no-padding">
+                        <select class="form-control frk-input animated fadeIn" title="Time"
+                                [disabled]="!availableFilterTimes"
+                                (change)="filterTimeChanged($event.target.value)">
+                            <option *ngIf="!availableFilterTimes" disabled selected>loading...</option>
+                            <option *ngFor="let time of availableFilterTimes"
+                                    [value]="time" [selected]="time === filterTime">{{ time }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="multiple-checkbox">
+                    <div class="title color-red"><i class="fa fa-futbol-o" aria-hidden="true"></i> Sports</div>
+                    <label *ngFor="let sport of availableSports">
+                        <input type="radio" name="sport" [checked]="sport.sportId === filterSport.sportId"
+                               (change)="filterSportsChanged(sport, $event.target.checked)"/>
+                        <span>{{ sport.sportName }}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+        <div *ngIf="loadingResultData">
+            <frk-loading-circle></frk-loading-circle>
+        </div>
+        <div class="list-group" *ngIf="receivedCourts && receivedCourts.length">
+            <div *ngFor="let receivedCourt of receivedCourts; let i = index"
+                 class="list-group-item row court-detail no-margin animated fadeIn"
+                 [style.animation-duration]="'0.75s'"
+                 [style.animation-delay]="i * 0.15 + 's'"
+                 [class.hide]="loadingResultData">
+                <div class="col-sm-3 court-image">
+                    <a class="thumbnail" [routerLink]="['/reservations/branch', receivedCourt.field.branch.id]">
+                        <img [src]="receivedCourt.field.partner.logo"
+                             (load)="courtImageLoaded()"
+                             (error)="updateUrl(receivedCourt)">
+                    </a>
+                </div>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="court-info">
+                                <div class="court-info-line">
+                                    {{ i + 1 }}.
+                                    <a [routerLink]="['/reservations/branch', receivedCourt.field.branch.id]">
+                                        <strong>{{ receivedCourt.field.branch.name }}</strong>
+                                    </a>
+                                </div>
+                                <div class="court-info-line">
+                                    <span data-toggle="tooltip"
+                                          title="{{ receivedCourt.field.branch.rating }} stars of {{ receivedCourt.field.branch.countRating }} rated">
+                                        <i class="fa" *ngFor="let star of [1, 2, 3, 4, 5]"
+                                           [class.fa-star]="star <= receivedCourt.field.branch.rating"
+                                           [class.color-red]="star <= receivedCourt.field.branch.rating"
+                                           [class.fa-star-o]="star > receivedCourt.field.branch.rating"></i>
+                                            {{ receivedCourt.field.branch.countRating }} reviews
+                                    </span>
+                                </div>
+                                <div class="court-info-line">
+                                    <div class="col-sm-8 no-padding">
+                                            <span class="court-opening-our" data-toggle="tooltip"
+                                                  title="Opening hour: from {{ receivedCourt.field.openedTime }} to {{ receivedCourt.field.closedTime }}">
+                                                <i class="fa fa-calendar" aria-hidden="true"></i>
+                                                {{ receivedCourt.field.openedTime }} - {{ receivedCourt.field.closedTime }}
+                                            </span>
+                                    </div>
+                                    <div class="col-sm-4 no-padding">
+                                            <span class="court-fieldCode" data-toggle="tooltip"
+                                                  title="Field: {{ receivedCourt.field.fieldCode }}">
+                                                <i class="fa fa-server" aria-hidden="true"></i>
+                                                {{ receivedCourt.field.fieldCode }}
+                                            </span>
+                                    </div>
+                                    <div class="col-sm-8 no-padding">
+                                            <span class="court-phone" data-toggle="tooltip"
+                                                  title="Phone number: {{ receivedCourt.field.branch.phoneNumber }}">
+                                                <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                                                {{ receivedCourt.field.branch.phoneNumber }}
+                                            </span>
+                                    </div>
+                                    <div class="col-sm-4 no-padding">
+                                            <span class="court-fieldSize" data-toggle="tooltip"
+                                                  title="Size: {{ receivedCourt.field.fieldSize }} players/team">
+                                                <img class="stadium" src="/assets/images/icons/stadium-24.png">
+                                                {{ receivedCourt.field.fieldSize }}
+                                            </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="court-address">
+                                <div class="address" data-toggle="tooltip"
+                                     title="Address: {{ receivedCourt.field.branch.address }}">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    {{ receivedCourt.field.branch.address }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-9 col-sm-offset-3">
+                    <div class="court-info-line field-opening-hour">
+                        <button *ngFor="let time of receivedCourt.availableTimes"
+                                class="btn btn-sm btn-opening" type="button"
+                                (click)="onBookingField(receivedCourt.field, time)">
+                            {{ time.label }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!loadingResultData && (receivedCourts && !receivedCourts.length)"
+             class="courts-result">
+            <div class="result-container">
+                <div class="no-result">
+                    There are no results found.
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bookingFieldModal" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel">
+    <div *ngIf="!selectedField || !selectedFieldTime">
+        <frk-loading-circle></frk-loading-circle>
+    </div>
+    <sd-booking-field-ticket
+            *ngIf="selectedField && selectedFieldTime"
+            [field]="selectedField"
+            [bookingDate]="selectedFieldDate"
+            [bookingTime]="selectedFieldTime"
+    ></sd-booking-field-ticket>
+</div>

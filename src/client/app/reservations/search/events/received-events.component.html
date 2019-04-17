@@ -1,0 +1,116 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="google-map hidden-xs animated fadeIn" *ngIf="receivedEvents && receivedEvents.length">
+                <div class="panel panel-default">
+                    <div class="panel-footer no-padding">
+                        <sebm-google-map [latitude]="userLocation.coordinate.lat"
+                                         [longitude]="userLocation.coordinate.lng">
+                            <sebm-google-map-marker *ngFor="let receivedEvent of receivedEvents; let i = index"
+                                                    [latitude]="receivedEvent.latitude"
+                                                    [longitude]="receivedEvent.longitude">
+                            </sebm-google-map-marker>
+                        </sebm-google-map>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+        <div *ngIf="loadingResultData">
+            <frk-loading-circle></frk-loading-circle>
+        </div>
+        <div class="list-group" *ngIf="receivedEvents && receivedEvents.length">
+            <div *ngFor="let receivedEvent of receivedEvents; let i = index"
+                 class="list-group-item row court-detail no-margin animated fadeIn"
+                 [style.animation-duration]="'0.75s'"
+                 [style.animation-delay]="i * 0.15 + 's'"
+                 [class.hide]="loadingResultData">
+                <div class="col-sm-3 court-image">
+                    <a class="thumbnail" [routerLink]="['../event', receivedEvent.id]">
+                        <img [src]="receivedEvent.images[0]"
+                             (load)="eventsImageLoaded()"
+                             (error)="$event.target.src = './assets/images/default/event.png'">
+                    </a>
+                </div>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="court-info">
+                                <div class="court-info-line">
+                                    {{ i + 1 }}.
+                                    <a [routerLink]="['../event', receivedEvent.id]">
+                                        <strong>{{ receivedEvent.name }}</strong>
+                                    </a>
+                                </div>
+                                <div class="court-info-line">
+                                    <div class="col-sm-12 no-padding">
+                                        <span class="court-opening-hour " data-toggle="tooltip"
+                                              title="Opening time: from {{ receivedEvent.startDate }}">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            From: {{ receivedEvent.startDate }}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-12 no-padding">
+                                        <span class="court-opening-hour " data-toggle="tooltip"
+                                              title="Opening time: to {{ receivedEvent.endDate }}">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            To: {{ receivedEvent.endDate }}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-12 no-padding">
+                                        <span class="court-phone" data-toggle="tooltip"
+                                              title="Age groups: {{ receivedEvent.contactPhone }}">
+                                            <span *ngFor="let group of receivedEvent.ageGroups">
+                                                <span class="label label-default">{{ group.groupName }}</span>
+                                            </span>
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-12 no-padding description">
+                                        <span class="court-phone" data-toggle="tooltip"
+                                              title="Phone number: {{ receivedEvent.contactEmail }}"
+                                              [innerHTML]="receivedEvent.description.substr(0, 100) + '...'">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="court-address">
+                                <div *ngIf="receivedEvent.address && receivedEvent.address.length"
+                                     class="address" data-toggle="tooltip"
+                                     title="Address: {{ receivedEvent.address }}">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    {{ receivedEvent.address }}
+                                </div>
+                            </div>
+                        </div>
+                        <!--<div class="col-sm-4 col-xs-offset-8">-->
+                            <!--<div class="court-info-line field-opening-hour">-->
+                                <!--<button class="btn btn-sm btn-opening" type="button"-->
+                                        <!--(click)="onBookingEvent(receivedEvent)"> Buy a ticket </button>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!loadingResultData && (receivedEvents && !receivedEvents.length)"
+             class="courts-result">
+            <div class="result-container">
+                <div class="no-result">
+                    There are no results found.
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<!--<div class="modal fade" id="bookingFacilityModal" tabindex="-1"-->
+     <!--role="dialog" aria-labelledby="myModalLabel">-->
+    <!--<div *ngIf="!selectedFacility">-->
+        <!--<frk-loading-circle></frk-loading-circle>-->
+    <!--</div>-->
+<!--</div>-->
+
+

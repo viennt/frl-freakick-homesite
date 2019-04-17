@@ -1,0 +1,12 @@
+<div class="row" *ngIf="data && pages && pages.length">
+    <div class="col-sm-12">
+        <div class="pagination">
+            <a (click)="onCLickPrevious($event)"
+                [class.disabled]="data.currentPage <= 0">&laquo;</a>
+            <a *ngFor="let page of pages" (click)="onClickItem(page)"
+               [class.active]="page === data.currentPage">{{ page + 1 }}</a>
+            <a (click)="onCLickNext($event)"
+                [class.disabled]="data.currentPage >= (data.totalPage - 1)">&raquo;</a>
+        </div>
+    </div>
+</div>

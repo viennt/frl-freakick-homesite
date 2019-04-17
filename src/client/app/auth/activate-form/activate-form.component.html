@@ -1,0 +1,111 @@
+<div *ngIf="validateForm" class="login">
+    <div class="user-login-5">
+        <div class="row bs-reset">
+            <div class="col-md-12 login-container bs-reset mt-login-5-bsfix bg-white bg-font-white">
+                <div class="login-form-step height-100">
+                    <div class="login-form-step-center height-100">
+                        <div class="form height-100 register-form">
+                            <div class="form-body register-form-center">
+                                <form (ngSubmit)="onSubmit(validateForm)" novalidate
+                                      [formGroup]="validateForm" class="login-form">
+                                    <div class="font-dark margin-bottom-25">
+                                        <div class="logo text-center margin-bottom-25">
+                                            <a [routerLink]="['/']">
+                                                <img src="./assets/images/logo/freakick_logo_dark.png" alt="" width="100"/> </a>
+                                        </div>
+                                        <div class="h3 thin">Join Freakick today</div>
+                                        <div class="h2">Be a local anywhere you go</div>
+                                    </div>
+                                    <hr>
+                                    <div class="font-dark form-group"
+                                         [class.has-error]="!validateForm.controls['username'].valid && validateForm.controls['username'].dirty">
+                                        <input id="username" name="username" autocomplete="off"
+                                               placeholder="Username (*)" required
+                                               class="form-control form-control-solid placeholder-no-fix input-lg"
+                                               [formControl]="validateForm.controls['username']"/>
+                                        <span *ngIf="!validateForm.controls['username'].valid && validateForm.controls['username'].dirty"
+                                              class="help-block"> Invalid input </span>
+                                    </div>
+                                    <div class="font-dark form-group"
+                                         [class.has-error]="!validateForm.controls['fullName'].valid && validateForm.controls['fullName'].dirty">
+                                        <input id="fullName" name="fullName" autocomplete="off"
+                                               placeholder="Full name (*)" required
+                                               class="form-control form-control-solid placeholder-no-fix input-lg"
+                                               [formControl]="validateForm.controls['fullName']"/>
+                                        <span *ngIf="!validateForm.controls['fullName'].valid && validateForm.controls['fullName'].dirty"
+                                              class="help-block"> Invalid input </span>
+                                    </div>
+                                    <div class="font-dark form-group"
+                                         [class.has-error]="!validateForm.controls['password'].valid && validateForm.controls['password'].dirty">
+                                        <input id="password" name="password" autocomplete="off"
+                                               placeholder="Password (*)" required type="password"
+                                               class="form-control form-control-solid placeholder-no-fix input-lg"
+                                               [formControl]="validateForm.controls['password']"/>
+                                        <span *ngIf="!validateForm.controls['password'].valid && validateForm.controls['password'].dirty"
+                                              class="help-block"> Invalid input </span>
+                                    </div>
+                                    <div class="font-dark form-group"
+                                         [class.has-error]="validateForm.hasError('mismatchedPasswords') && validateForm.controls['confirmPassword'].touched">
+                                        <input  id="confirmPassword" name="confirmPassword" required
+                                                autocomplete="off"
+                                                type="password" placeholder="Confirm Password"
+                                                class="form-control form-control-solid placeholder-no-fix input-lg"
+                                                [formControl]="validateForm.controls['confirmPassword']"/>
+                                        <span *ngIf="validateForm.hasError('mismatchedPasswords') && validateForm.controls['confirmPassword'].touched"
+                                              class="help-block">Passwords do not match</span>
+                                    </div>
+                                    <div class="font-dark form-group"
+                                         [class.has-error]="!validateForm.controls['countryId'].valid && validateForm.controls['countryId'].dirty">
+                                        <select id="country" name="country" class="form-control input-lg"
+                                                [formControl]="validateForm.controls['countryId']" required
+                                                (change)="onChangedCountry($event.target.value)">
+                                            <option value="" disabled selected>Select a country</option>
+                                            <option *ngFor="let country of countries"
+                                                    [value]="country.countryId">
+                                                {{country.countryName}}
+                                            </option>
+                                        </select>
+                                        <span *ngIf="!validateForm.controls['countryId'].valid && validateForm.controls['countryId'].dirty"
+                                              class="help-block"> Invalid input </span>
+                                    </div>
+                                    <div class="font-dark form-group"
+                                         [class.has-error]="!validateForm.controls['stateId'].valid && validateForm.controls['stateId'].dirty">
+                                        <select id="state" name="state" class="form-control input-lg"
+                                                [formControl]="validateForm.controls['stateId']" required
+                                                (change)="onChangedState($event.target.value)">
+                                            <option value="" disabled selected>Select a state</option>
+                                            <option *ngFor='let state of states'
+                                                    value="{{state.stateId}}">{{state.stateName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                    <div class="font-dark form-group"
+                                         [class.has-error]="!validateForm.controls['cityId'].valid && validateForm.controls['cityId'].dirty">
+                                        <select id="city" name="city" class="form-control input-lg"
+                                                [formControl]="validateForm.controls['cityId']" required>
+                                            <option value="" disabled selected>Select a city</option>
+                                            <option *ngFor='let city of cities' value="{{city.cityId}}">
+                                                {{city.cityName}}
+                                            </option>
+                                        </select>
+                                    </div>
+                                </form>
+                                <form class="login-form">
+                                    <div class="font-dark row">
+                                        <div class="col-xs-4">
+                                            <button class="btn btn-block btn-circle blue bold"
+                                                    (click)="onClickSubmit(validateForm)">
+                                                <i *ngIf="isLoading" class="fa fa-spinner fa-spin"></i>
+                                                Get Started!
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<li class="meta__item">
+    <i class="icon-eye font-grey-cascade"></i>
+    {{ event.numberOfRegisteredUsers || '0' }}
+</li>
+<li class="meta__item" (click)="onLikeEvent($event)">
+    <a href="javascript:;">
+        <i *ngIf="isLoadingLikeEvent" class="fa fa-spinner fa-spin font-grey-cascade"></i>
+        <i *ngIf="!isLoadingLikeEvent && !event.isUserLiked" class="icon-like font-grey-cascade"></i>
+        <i *ngIf="!isLoadingLikeEvent && event.isUserLiked" class="icon-like font-red-mint"></i>
+        {{ event.numberOfLikes || '0' }}</a>
+</li>
+<li class="meta__item">
+    <a href="javascript:;">
+        <i class="icon-bubble font-grey-cascade"></i>
+        {{ event.numberOfComments || '0' }}</a>
+</li>

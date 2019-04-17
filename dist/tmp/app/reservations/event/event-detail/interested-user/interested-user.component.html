@@ -1,0 +1,18 @@
+<div class="box" *ngFor="let user of lstUser">
+    <article class="media">
+        <div class="media-left">
+            <figure class="image is-32x32">
+                <img [src]="user.logo" (error)="updateImage(user.logo)">
+            </figure>
+        </div>
+        <div class="media-content">
+            <div class="content">
+                <p>
+                    <strong>{{ user.name }}</strong>
+                    <br>
+                    {{ user.email }}
+                </p>
+            </div>
+        </div>
+    </article>
+</div>

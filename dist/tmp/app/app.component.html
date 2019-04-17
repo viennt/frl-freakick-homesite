@@ -1,0 +1,10 @@
+<router-outlet></router-outlet>
+<simple-notifications [options]="options"></simple-notifications>
+<div *ngIf="!isAgreedCookiePolicy" class="cookie-policy-panel">
+    <p>
+        <span>Freakick sites use cookies and other tracking technologies. By using Freakick sites, you are agreeing to our revised</span>
+        <a [routerLink]="['/', 'about', 'privacy']">Privacy Policy</a> <span>and</span>
+        <a [routerLink]="['/', 'legal', 'terms']">Terms of Service</a><span>, including our Cookie Policy.</span>
+    </p>
+    <div class="button-agree" (click)="onClickAgreeCookiePolicy()">I Agree</div>
+</div>

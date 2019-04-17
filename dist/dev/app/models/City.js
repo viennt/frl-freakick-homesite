@@ -1,0 +1,11 @@
+"use strict";
+var City = (function () {
+    function City(cityId, cityName) {
+        this.cityId = cityId;
+        this.cityName = cityName;
+    }
+    return City;
+}());
+exports.City = City;
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9tb2RlbHMvQ2l0eS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBS0E7SUFJRSxjQUFZLE1BQWMsRUFBRSxRQUFnQjtRQUMxQyxJQUFJLENBQUMsTUFBTSxHQUFHLE1BQU0sQ0FBQztRQUNyQixJQUFJLENBQUMsUUFBUSxHQUFHLFFBQVEsQ0FBQztJQUMzQixDQUFDO0lBQ0gsV0FBQztBQUFELENBUkEsQUFRQyxJQUFBO0FBUlksWUFBSSxPQVFoQixDQUFBIiwiZmlsZSI6ImFwcC9tb2RlbHMvQ2l0eS5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQGRlc2NyaXB0aW9uOiBDaXR5IG1vZGVsXG4gKiBAYXV0aG9yOiBOZXN0b3IgTk1cbiAqIEBkYXRlOiAxMy1PY3QtMjAxNlxuICovXG5leHBvcnQgY2xhc3MgQ2l0eSB7XG4gIHB1YmxpYyBjaXR5SWQ6IG51bWJlcjtcbiAgcHVibGljIGNpdHlOYW1lOiBzdHJpbmc7XG5cbiAgY29uc3RydWN0b3IoY2l0eUlkOiBudW1iZXIsIGNpdHlOYW1lOiBzdHJpbmcpIHtcbiAgICB0aGlzLmNpdHlJZCA9IGNpdHlJZDtcbiAgICB0aGlzLmNpdHlOYW1lID0gY2l0eU5hbWU7XG4gIH1cbn1cbiJdfQ==

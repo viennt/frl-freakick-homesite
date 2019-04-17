@@ -1,0 +1,10 @@
+"use strict";
+var contact_component_1 = require('./contact.component');
+exports.ContactRoutes = [
+    {
+        path: 'contact',
+        component: contact_component_1.ContactComponent,
+    },
+];
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9jb250YWN0L2NvbnRhY3Qtcm91dGluZy5tb2R1bGUudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IjtBQUNBLGtDQUFpQyxxQkFBcUIsQ0FBQyxDQUFBO0FBRTFDLHFCQUFhLEdBQVc7SUFDbkM7UUFDRSxJQUFJLEVBQUUsU0FBUztRQUNmLFNBQVMsRUFBRSxvQ0FBZ0I7S0FDNUI7Q0FDRixDQUFDIiwiZmlsZSI6ImFwcC9jb250YWN0L2NvbnRhY3Qtcm91dGluZy5tb2R1bGUuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBSb3V0ZXMgfSBmcm9tICdAYW5ndWxhci9yb3V0ZXInO1xuaW1wb3J0IHsgQ29udGFjdENvbXBvbmVudCB9IGZyb20gJy4vY29udGFjdC5jb21wb25lbnQnO1xuXG5leHBvcnQgY29uc3QgQ29udGFjdFJvdXRlczogUm91dGVzID0gW1xuICB7XG4gICAgcGF0aDogJ2NvbnRhY3QnLFxuICAgIGNvbXBvbmVudDogQ29udGFjdENvbXBvbmVudCxcbiAgfSxcbl07XG4iXX0=

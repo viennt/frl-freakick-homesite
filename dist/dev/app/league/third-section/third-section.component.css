@@ -1,0 +1,285 @@
+#overlay,
+    {
+    width: 100%;
+    height: 100vh;
+    left: 0;
+    top: 0;
+}
+
+#overlay {
+    background: url(./assets/images/league-page/Pitch.png) no-repeat center center;
+    background-size: contain;
+}
+
+.league.first {
+    background-color: transparent;
+    color: #ffffff;
+}
+
+.league.second {
+    margin-top: 50px;
+    background: url(./assets/images/league-page/Pitch.png) no-repeat bottom center;
+    background-size: contain;
+}
+
+.league.third {
+    background-color: transparent;
+}
+
+section {
+    padding: 0 0 0 0;
+    display: block;
+    position: relative;
+    background-color: transparent;
+}
+
+@media (min-width: 768px) {
+    section {
+        padding: 0 0 0 0;
+    }
+}
+
+.feature-content .sub-content {
+    height: 320px;
+    padding: 10px 0 20px 0;
+    transition: all .3s;
+}
+
+.feature-content .sub-content.show-children {
+    padding: 0;
+}
+
+@media (max-width: 767px),
+(max-device-width: 767px) {
+    .feature-content .sub-content {
+        height: auto;
+        padding: 30px 0 30px 0;
+        text-align: center;
+    }
+}
+
+.feature-content .sub-content .title {
+    font-weight: 300;
+    font-size: 21px;
+    line-height: 1.3;
+    padding: 10px 0;
+    color: #333333
+}
+
+.feature-content .sub-content .description {
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.3;
+    color: #333333
+}
+
+.feature-content .sub-content .sub-description {
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.3;
+    padding: 10px 0;
+    color: #333333
+}
+
+@media (max-width: 767px),
+(max-device-width: 767px) {
+    .feature-content .sub-content .description {
+        font-size: 26px;
+    }
+}
+
+.feature-content .sub-content .learn-more {
+    cursor: pointer;
+    color: #4a8fe7;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all .3s;
+}
+
+.feature-content .sub-content .learn-more:hover {
+    color: #333333;
+}
+
+.feature-content .sub-content .children {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.3;
+    padding: 15px 0 0 0;
+    transition: all .3s;
+    color: #787878;
+    color: #333333
+}
+
+.feature-content .sub-content .show-less {
+    font-weight: 300;
+    font-size: 15px;
+    line-height: 1.3;
+    padding: 15px 0 0 0;
+    color: #787878;
+    cursor: pointer;
+}
+
+.feature-content .sub-content .children:hover,
+.feature-content .sub-content .show-less:hover {
+    color: #333333;
+}
+
+.first .sub-content,
+.second .sub-content,
+.reservations .sub-content {
+    text-align: left;
+}
+
+@media (max-width: 767px),
+(max-device-width: 767px) {
+    .feature-content .sub-content {
+        height: auto;
+        margin: 0 0 30px 0;
+        text-align: center;
+    }
+}
+
+/* first section */
+
+.first .image-content {
+    position: relative;
+    margin: auto;
+}
+
+.first .league-image-text {
+    width: 100%;
+}
+
+.first .league-image-social {
+    width: 80%;
+    margin-top: 20px;
+}
+
+/* second section */
+
+.second .image-content {
+    width: 50%;
+    position: relative;
+    margin: auto;
+}
+
+.second .league-image-game {
+    width: 80%;
+}
+
+.second .league-image-profile {
+    width: 95%;
+}
+
+.second .league-image-like {
+    width: 40%;
+}
+
+.vertical-align {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-align-items: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+/* third section */
+
+.third .image-content {
+    width: 50%;
+    position: relative;
+    margin: auto;
+}
+
+@media (max-width: 767px) {
+    .second .league-image-game {
+        display: none;
+    }
+    .second .league-image-like {
+        display: none;
+    }
+}
+
+.league-gallery {
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: wrap;
+        -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+}
+
+/* Create four equal columns that sits next to each other */
+
+.column {
+    -webkit-flex: 25%;
+        -ms-flex: 25%;
+            flex: 25%;
+    max-width: 25%;
+    padding: 0 15px;
+}
+
+.column img {
+    margin: 0 0 30px 0;
+    vertical-align: middle;
+    border-radius: 5px;
+    width: 100%
+}
+
+.column:nth-of-type(2) {
+    margin-top: 120px
+}
+
+.column:nth-of-type(4) {
+    margin-top: 120px
+}
+
+/* Responsive layout - makes a two column-layout instead of four columns */
+
+@media (max-width: 800px) {
+    .column {
+        -webkit-flex: 50%;
+            -ms-flex: 50%;
+                flex: 50%;
+        max-width: 50%;
+    }
+    .column:nth-of-type(2) {
+        margin-top: 100px
+    }
+    .column:nth-of-type(4) {
+        margin-top: 100px
+    }
+}
+
+@media (max-width: 1100px) {
+    .column {
+        -webkit-flex: 25%;
+            -ms-flex: 25%;
+                flex: 25%;
+        max-width: 50%;
+    }
+    .column:nth-of-type(2) {
+        margin-top: 100px
+    }
+    .column:nth-of-type(4) {
+        margin-top: 100px
+    }
+}
+
+/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+
+@media (max-width: 600px) {
+    .column {
+        -webkit-flex: 100%;
+            -ms-flex: 100%;
+                flex: 100%;
+        max-width: 100%;
+    }
+    .column:nth-of-type(2) {
+        margin-top: 0
+    }
+    .column:nth-of-type(4) {
+        margin-top: 0
+    }
+}

@@ -1,0 +1,18 @@
+<sd-navbar></sd-navbar>
+
+<header #section class="first-section">
+    <div id="overlay"
+         [class.non-fixed]="nonFixedBackground"
+         [style.opacity]="sectionOpacity"></div>
+    <div class="container animated fadeIn">
+        <div class="intro-text" [style.opacity]="2 * sectionOpacity - 1">
+            <div class="intro-heading">{{ typeWriterDisplay$ | async }}</div>
+        </div>
+    </div>
+</header>
+
+<section class="home-section">
+    <edu-second-section></edu-second-section>
+</section>
+
+<sd-new-footer></sd-new-footer>

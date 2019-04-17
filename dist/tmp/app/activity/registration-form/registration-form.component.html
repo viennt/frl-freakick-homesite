@@ -1,0 +1,65 @@
+<modal #modal [animation]="false"
+       (onClose)="onCloseModal($event)"
+       (onDismiss)="onCloseModal($event)">
+    <modal-header>
+        <h4 class="text-center no-margin">REGISTRATION FORM</h4>
+    </modal-header>
+    <modal-body>
+        <form *ngIf="!!registerForm" class="no-margin"
+              [formGroup]="registerForm" novalidate>
+            <div class="form-body">
+                <div class="form-group"
+                     [class.has-error]="!registerForm.controls['fullName'].valid && registerForm.controls['fullName'].dirty">
+                    <label for="fullName">Name</label>
+                    <input id="fullName" name="fullName" class="form-control"
+                           [formControl]="registerForm.controls['fullName']">
+                    <span *ngIf="!registerForm.controls['fullName'].valid && registerForm.controls['fullName'].dirty"
+                          class="help-block">Please fill your name</span>
+                </div>
+                <div class="form-group"
+                     [class.has-error]="!registerForm.controls['organization'].valid && registerForm.controls['organization'].dirty">
+                    <label for="organization">Organization / Company (Optional)</label>
+                    <input id="organization" name="organization" class="form-control"
+                           [formControl]="registerForm.controls['organization']">
+                    <span *ngIf="!registerForm.controls['organization'].valid && registerForm.controls['organization'].dirty"
+                          class="help-block">Please fill your organization/company</span>
+                </div>
+                <div class="form-group"
+                     [class.has-error]="!registerForm.controls['phoneNumber'].valid && registerForm.controls['phoneNumber'].dirty">
+                    <label for="phone">Phone Number</label>
+                    <input id="phone" name="phone" class="form-control"
+                           [formControl]="registerForm.controls['phoneNumber']">
+                    <span *ngIf="!registerForm.controls['phoneNumber'].valid && registerForm.controls['phoneNumber'].dirty"
+                          class="help-block">Please fill your phone</span>
+                </div>
+                <div class="form-group"
+                     [class.has-error]="!registerForm.controls['address'].valid && registerForm.controls['address'].dirty">
+                    <label for="address">Address</label>
+                    <input id="address" name="address" class="form-control"
+                           [formControl]="registerForm.controls['address']">
+                    <span *ngIf="!registerForm.controls['address'].valid && registerForm.controls['address'].dirty"
+                          class="help-block">Please fill your address</span>
+                </div>
+                <div class="form-group"
+                     [class.has-error]="!registerForm.controls['quantity'].valid && registerForm.controls['quantity'].dirty">
+                    <label for="quantity">Quantity</label>
+                    <input id="quantity" name="quantity" type="number" class="form-control"
+                           [formControl]="registerForm.controls['quantity']">
+                    <span *ngIf="!registerForm.controls['quantity'].valid && registerForm.controls['quantity'].dirty"
+                          class="help-block">Please fill your quantity</span>
+                </div>
+                <p>
+                    By clicking on Register, you agree to Freakick's
+                    <a href="/legal/terms" target="_blank">terms & conditions</a> and
+                    <a href="/about/privacy" target="_blank">privacy policy</a>.
+                </p>
+                <button class="btn input-submit"
+                        [disabled]="!registerForm.valid || isLoading"
+                        (click)="sendMessageToAcceptInvitation()">
+                    <i *ngIf="isLoading" class="fa fa-spin fa-spinner"></i> Register
+                </button>
+                <a class="btn btn-link" (click)="modal.close()">Cancel</a>
+            </div>
+        </form>
+    </modal-body>
+</modal>

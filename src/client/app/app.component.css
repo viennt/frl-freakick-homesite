@@ -1,0 +1,35 @@
+.cookie-policy-panel {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #ffffff;
+    padding: 1rem 3rem 2rem;
+    border-top: 5px solid #25507f;
+    text-align: center;
+}
+
+.button-agree {
+    color: #2973AC;
+    font-size: 18px;
+    border: 1px solid #2973AC;
+    background: transparent;
+    letter-spacing: 0.25vmin;
+    border-radius: 500px;
+    padding: 7px 20px;
+    text-decoration: none;
+    text-shadow: none;
+    cursor: pointer;
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
+    width: fit-content;
+    margin: auto;
+}
+
+.button-agree:hover {
+    background: #333333;
+    color: #fcfcfc;
+}

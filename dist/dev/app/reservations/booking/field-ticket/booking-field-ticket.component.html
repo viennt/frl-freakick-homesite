@@ -1,0 +1,72 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div *ngIf="bookingErrorMessage" class="alert alert-danger" role="alert">
+        <strong>Error!</strong> {{ bookingErrorMessage }}
+      </div>
+      <div *ngIf="isBookingSuccess" class="alert alert-success" role="alert">
+        <strong>Success!</strong> You booked a ticket successfully.
+      </div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title" id="myModalLabel">Booking Field Ticket</h4>
+    </div>
+    <div class="modal-body field-information">
+      <div class="court-name">{{ field.branch.name }}</div>
+      <div class="court-rating">
+            <span class="countRating" data-toggle="tooltip"
+                  title="{{ field.branch.rating }} stars of {{ field.branch.countRating }} rated">
+              <i class="fa" *ngFor="let star of [1, 2, 3, 4, 5]"
+                 [class.fa-star]="star <= field.branch.rating"
+                 [class.fa-star-o]="star > field.branch.rating"></i>
+              {{ field.branch.countRating }} <i class="fa fa-user" aria-hidden="true"></i>
+            </span>
+      </div>
+      <div class="court-opening-hour " data-toggle="tooltip"
+           title="Opening hour: from {{ field.openedTime }}
+               to {{ field.closedTime }}">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        {{ field.openedTime }} - {{ field.closedTime }}
+      </div>
+      <div class="court-phone" data-toggle="tooltip"
+           title="Phone number: {{ field.branch.phoneNumber }}">
+        <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+        {{ field.branch.phoneNumber }}
+      </div>
+      <div class="court-fieldCode" data-toggle="tooltip"
+           title="Field: {{ field.fieldCode }}">
+        <i class="fa fa-server" aria-hidden="true"></i>
+        {{ field.fieldCode }}
+      </div>
+      <div class="court-fieldSize" data-toggle="tooltip"
+           title="Size: {{ field.fieldSize }} players/team">
+        <img class="stadium" src="/assets/images/icons/stadium-24.png">
+        {{ field.fieldSize }}
+      </div>
+      <div class="court-address" data-toggle="tooltip"
+           title="Address: {{ field.branch.address }}">
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        {{ field.branch.address }}
+      </div>
+      <div class="input-label">
+        <div>Start at:</div>
+        <div>Duration:</div>
+      </div>
+      <div class="input-group">
+        <input type="text" class="form-control frk-input search-keyword"
+               value="{{ bookingTime.label }}" disabled/>
+        <select class="form-control frk-input animated fadeIn" title="Time"
+                [(ngModel)]="timeEnd" [disabled]="!durationTimes">
+          <option *ngIf="!durationTimes" disabled selected>loading...</option>
+          <option *ngFor="let time of durationTimes" [value]="time.value">{{ time.label }}</option>
+        </select>
+      </div>
+    </div>
+    <div class="modal-footer" *ngIf="!isBookingSuccess">
+      <button type="button" class="btn btn-danger" (click)="submitBooking($event)">
+        Book a court
+      </button>
+    </div>
+  </div>
+</div>

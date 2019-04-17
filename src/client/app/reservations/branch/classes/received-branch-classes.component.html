@@ -1,0 +1,124 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="filter no-select">
+                <div class="multiple-checkbox">
+                    <div class="title color-red"><i class="fa fa-futbol-o" aria-hidden="true"></i> Sports</div>
+                    <label *ngFor="let sport of availableSports">
+                        <input type="checkbox" name="sport" checked
+                               [disabled]="filterSports.length === 1 && sport.sportId === filterSports[0].sportId"
+                               (change)="filterSportsChanged(sport, $event.target.checked)"/>
+                        <span>{{ sport.sportName }}</span>
+                    </label>
+                </div>
+                <div class="multiple-checkbox">
+                    <div class="title color-red"><i class="fa fa-futbol-o" aria-hidden="true"></i> Groups</div>
+                    <label *ngFor="let group of availableGroups">
+                        <input type="checkbox" name="group" checked
+                               [disabled]="filterGroups.length === 1 && group.groupId === filterGroups[0].groupId"
+                               (change)="filterGroupsChanged(group, $event.target.checked)"/>
+                        <span>{{ group.groupName }}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+            <div *ngIf="loadingResultData">
+                <frk-loading-circle></frk-loading-circle>
+            </div>
+            <div class="list-group" *ngIf="receivedClasses && receivedClasses.length">
+                <div *ngFor="let receivedClass of receivedClasses; let i = index"
+                     class="list-group-item col-xs-6 court-detail no-margin"
+                     [class.hide]="loadingResultData">
+                        <div class="col-sm-12">
+                            <div class="court-info">
+                                <div class="court-info-line">
+                                    <div class="col-sm-12 no-padding">
+                                        <span class="court-opening-hour" data-toggle="tooltip"
+                                             title="Class name: {{ receivedClass.trainingClass.className }}">
+                                            {{ i + 1 }}. Class: {{ receivedClass.trainingClass.className }}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-12 no-padding">
+                                        <span class="court-fieldCode" data-toggle="tooltip"
+                                             title="Class code: {{ receivedClass.trainingClass.classCode }}">
+                                            <i class="fa fa-server" aria-hidden="true"></i>
+                                            {{ receivedClass.trainingClass.classCode }}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-12 no-padding">
+                                        <span class="court-opening-hour " data-toggle="tooltip"
+                                              title="Class time: from {{ receivedClass.trainingClass.from }} to {{ receivedClass.trainingClass.to }}">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            <span>{{ receivedClass.trainingClass.from }}</span>
+                                            <span> - </span>
+                                            <span>{{ receivedClass.trainingClass.to }}</span>
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-12 no-padding">
+                                        <span class="court-fieldCode" data-toggle="tooltip"
+                                             title="Day price: {{ receivedClass.trainingClass.dayPrice }}">
+                                            <i class="fa fa-usd" aria-hidden="true"></i> {{ receivedClass.trainingClass.dayPrice }} per day
+                                        </span>
+                                        <span class="court-fieldCode" data-toggle="tooltip"
+                                             title="Whole class price: {{ receivedClass.trainingClass.wholeClassPrice }}">
+                                            - <i class="fa fa-usd" aria-hidden="true"></i> {{ receivedClass.trainingClass.wholeClassPrice }} per class
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="court-info-line field-opening-hour" *ngIf="!receivedClass.classSchedule">
+                                <button class="btn btn-sm btn-opening btn-auto-with" type="button" disabled>
+                                    This class does not have the schedule!
+                                </button>
+                            </div>
+                            <div class="court-info-line field-opening-hour" *ngIf="receivedClass.classSchedule">
+                                <button class="btn btn-sm btn-opening" type="button"
+                                        data-toggle="modal" data-target="#scheduleClassModal"
+                                        (click)="onOpenClassSchedule(receivedClass.classSchedule)"> View schedule </button>
+                                <button class="btn btn-sm btn-opening" type="button"
+                                        (click)="onBookingClass(receivedClass)"> Join </button>
+                            </div>
+                        </div>
+                </div>
+            </div>
+            <div *ngIf="!loadingResultData && (receivedClasses && !receivedClasses.length)"
+                 class="courts-result">
+                <div class="result-container">
+                    <div class="no-result col-xs-12">
+                        There are no results found.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="bookingClassModal" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel">
+    <div *ngIf="!selectedTrainingClass || !selectedClassSchedule">
+        <frk-loading-circle></frk-loading-circle>
+    </div>
+    <sd-booking-class-ticket
+            *ngIf="selectedTrainingClass && selectedClassSchedule"
+            [classSchedule]="selectedClassSchedule"
+            [trainingClass]="selectedTrainingClass"
+    ></sd-booking-class-ticket>
+</div>
+
+<div class="modal fade" id="scheduleClassModal" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel">
+    <div *ngIf="!selectedClassSchedule">
+        <frk-loading-circle></frk-loading-circle>
+    </div>
+    <sd-class-schedule
+            *ngIf="selectedClassSchedule"
+            [classSchedule]="selectedClassSchedule"
+    ></sd-class-schedule>
+</div>
+
+
+
+
+

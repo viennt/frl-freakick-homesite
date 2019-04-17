@@ -1,0 +1,69 @@
+<div class="login">
+    <div class="user-login-5">
+        <div class="row bs-reset">
+            <div class="col-md-12 login-container bs-reset mt-login-5-bsfix bg-white bg-font-white">
+                <div class="login-form-step height-100">
+                    <div class="login-form-step-center height-100">
+                        <div class="form height-100 register-form">
+                            <div class="form-body register-form-center">
+                                <form class="login-form" #loginForm="ngForm">
+                                    <div class="font-dark margin-bottom-25">
+                                        <div class="logo text-center margin-bottom-25">
+                                            <a [routerLink]="['/']">
+                                                <img src="./assets/images/logo/freakick_logo_dark.png" alt="" width="100"/> </a>
+                                        </div>
+                                        <div class="h3 thin">Join Freakick today</div>
+                                        <div class="h2">Be a local anywhere you go</div>
+                                    </div>
+                                    <hr>
+                                    <div class="font-dark form-group"
+                                         [class.has-error]="!username.valid && username.dirty">
+                                        <input #username="ngModel" name="userName" required
+                                               autofocus maxlength="55"
+                                               autocomplete="off"
+                                               placeholder="Username or email (*)"
+                                               class="form-control form-control-solid placeholder-no-fix input-lg"
+                                               [(ngModel)]="userName" (keyup.enter)="login()"/>
+                                        <span *ngIf="!username.valid && username.dirty"
+                                              class="help-block">Invalid username</span>
+                                    </div>
+                                    <div class="font-dark form-group"
+                                         [class.has-error]="!pwd.valid && pwd.dirty">
+                                        <input #pwd="ngModel" name="password" required
+                                               autofocus maxlength="55"
+                                               autocomplete="off" type="password"
+                                               placeholder="Password (*)"
+                                               class="form-control form-control-solid placeholder-no-fix input-lg"
+                                               [(ngModel)]="password" (keyup.enter)="login()"/>
+                                        <span *ngIf="!pwd.valid && pwd.dirty"
+                                              class="help-block">Invalid password</span>
+                                    </div>
+                                    <div class="font-dark row">
+                                        <div class="col-xs-4">
+                                            <button class="btn btn-block btn-circle blue bold"
+                                                    [disabled]="!loginForm.form.valid || isLoading"
+                                                    (click)="login()">
+                                                <span>Login</span>
+                                                <i *ngIf="isLoading" class="fa fa-circle-o-notch fa-spin"></i>
+                                            </button>
+                                        </div>
+                                        <div class="col-xs-8 text-right">
+                                            <div class="btn">
+                                                <span [routerLink]="['/', 'request-account']">Don't have an account?</span>
+                                                <a [routerLink]="['/', 'request-account']">Sign up</a>
+                                            </div>
+                                            <div class="btn">
+                                                <a [routerLink]="['/', 'reset-password']">Forgot your password?</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

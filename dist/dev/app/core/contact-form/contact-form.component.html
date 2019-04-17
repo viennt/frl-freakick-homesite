@@ -1,0 +1,38 @@
+<modal #modal [animation]="false"
+       (onClose)="onCloseModal($event)"
+       (onDismiss)="onCloseModal($event)">
+    <modal-header>
+        <h4 class="text-center no-margin">CONTACT US</h4>
+    </modal-header>
+    <modal-body>
+        <form class="no-margin" #contactForm="ngForm">
+            <div class="form-body">
+                <div class="form-group" [class.has-error]="!name.valid && name.dirty">
+                    <input id="input-name" placeholder="Name" class="form-control"
+                           name="name" required minlength="1" #name="ngModel"
+                           [(ngModel)]="contactName">
+                    <span *ngIf="!name.valid && name.dirty" class="help-block">Please fill your name</span>
+                </div>
+                <div class="form-group" [class.has-error]="!email.valid && email.dirty">
+                    <input type="email" id="input-email"
+                           name="email" required minlength="1" #email="ngModel"
+                           placeholder="Email address" class="form-control"
+                           pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                           [(ngModel)]="contactEmail">
+                    <span *ngIf="!email.valid && email.dirty" class="help-block">Please fill valid email</span>
+                </div>
+                <div class="form-group" [class.has-error]="!message.valid && message.dirty">
+                    <textarea name="message" type="text" placeholder="Message"
+                              id="input-message" class="form-control"
+                              required minlength="1" #message="ngModel"
+                              [(ngModel)]="contactMessage"></textarea>
+                    <span *ngIf="!message.valid && message.dirty" class="help-block">Message is required</span>
+                </div>
+                <button id="input-submit"
+                       (click)="sendMessageToSubmitContactInfo()">
+                    <i *ngIf="isLoading" class="fa fa-spin fa-spinner"></i> Submit
+                </button>
+            </div>
+        </form>
+    </modal-body>
+</modal>

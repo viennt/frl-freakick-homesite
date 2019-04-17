@@ -1,0 +1,84 @@
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <div *ngIf="bookingErrorMessage" class="alert alert-danger" role="alert">
+        <strong>Error!</strong> {{ bookingErrorMessage }}
+      </div>
+      <div *ngIf="isBookingSuccess" class="alert alert-success" role="alert">
+        <strong>Success!</strong> You booked a ticket successfully.
+      </div>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <h4 class="modal-title" id="myModalLabel">Booking Facility Ticket</h4>
+    </div>
+    <div class="modal-body field-information">
+      <div class="court-name">{{ facility.branch.name }}</div>
+      <div class="court-rating">
+          <span class="countRating" data-toggle="tooltip"
+                title="{{ facility.branch.rating }} stars of {{ facility.branch.countRating }} rated">
+            <i class="fa" *ngFor="let star of [1, 2, 3, 4, 5]"
+               [class.fa-star]="star <= facility.branch.rating"
+               [class.fa-star-o]="star > facility.branch.rating"></i>
+            {{ facility.branch.countRating }} <i class="fa fa-user" aria-hidden="true"></i>
+          </span>
+      </div>
+      <div class="court-opening-hour " data-toggle="tooltip"
+           title="Opening hour: from {{ facility.openedTime }}
+             to {{ facility.closedTime }}">
+        <i class="fa fa-calendar" aria-hidden="true"></i>
+        {{ facility.openedTime }} - {{ facility.closedTime }}
+      </div>
+      <div class="court-phone" data-toggle="tooltip"
+           title="Phone number: {{ facility.branch.phoneNumber }}">
+        <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+        {{ facility.branch.phoneNumber }}
+      </div>
+      <div class="court-fieldCode" data-toggle="tooltip"
+           title="Field: {{ facility.fieldCode }}">
+        <i class="fa fa-server" aria-hidden="true"></i>
+        {{ facility.fieldCode }}
+      </div>
+      <div class="court-fieldSize" data-toggle="tooltip"
+           title="Size: {{ facility.fieldSize }} players/team">
+        <img class="stadium" src="/assets/images/icons/stadium-24.png">
+        {{ facility.fieldSize }}
+      </div>
+      <div class="court-address" data-toggle="tooltip"
+           title="Address: {{ facility.branch.address }}">
+        <i class="fa fa-map-marker" aria-hidden="true"></i>
+        {{ facility.branch.address }}
+      </div>
+      <div class="input-label">
+        <div>Date:</div>
+        <div>Time:</div>
+        <div>Quantity:</div>
+      </div>
+      <div class="input-group">
+        <div class="form-group form-control frk-input datetime-picker animated">
+          <input type="text" class="form-group form-control" id="facility-ticket-daterange"/>
+          <i class="glyphicon glyphicon-calendar fa fa-calendar"
+             onclick="document.querySelector('#facility-ticket-daterange').click()"></i>
+        </div>
+        <select class="form-control frk-input animated fadeIn" title="Time"
+                [(ngModel)]="bookingTicketTime" [disabled]="!availableTimes">
+          <option *ngIf="!availableTimes" disabled selected>loading...</option>
+          <option *ngFor="let time of availableTimes" [value]="time">{{ time }}</option>
+        </select>
+        <input type="number" class="form-control frk-input search-keyword"
+               placeholder="Quantity" min="1" (ngModelChange)="onChangeQuantity($event)"
+               [(ngModel)]="bookingTicketQuantity"/>
+      </div>
+    </div>
+    <div class="modal-footer" *ngIf="!isBookingSuccess">
+      <button type="button" class="btn btn-danger"
+              *ngIf="submitState !== 0"
+              (click)="onBookingTicket($event)">
+        {{ submitState === 1 ? 'Buy a ticket for facility' : 'Buying' }}
+      </button>
+      <button type="button" class="btn btn-danger" disabled *ngIf="submitState === 0">
+        Buy a ticket for facility
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,138 @@
+.overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9;
+    background: rgba(59, 63, 81, 0.8)
+}
+.event-main-form {
+    position: relative;
+    z-index: 10
+}
+.schedule-event {
+    position: relative;
+    z-index: 10;
+}
+.schedule-event.age-group {
+    z-index: 15;
+}
+.schedule-event.form-options {
+    z-index: 5;
+}
+.schedule-event.form-footer {
+    z-index: 2;
+}
+.schedule-event-body {
+    width: 100%;
+    padding: 5px 0;
+    display: inline-block
+}
+.schedule-event-body .user-image {
+    width: 50px;
+    height: 50px;
+    float: left;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid #eee
+}
+.schedule-event-body .user-image img {
+    width: 100%;
+    height: 100%
+}
+.schedule-event-body .event-title {
+    width: calc(100% - 60px);
+    height: 50px;
+    float: left
+}
+.schedule-event-body .event-title input {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+    border: none;
+    outline: none
+}
+
+.schedule-event-footer {
+    width: 100%;
+    height: 35px;
+    padding: 10px 0 0 0;
+    border-top: 1px solid #f0f1f2
+}
+
+.form-group {
+    margin-bottom: 0
+}
+.event-description .form-group {
+    margin: 0
+}
+
+.schedule-event-body /deep/ .button-event {
+    text-align: left;
+}
+
+.schedule-event-body .form-control-event-date {
+    border: 2px solid
+}
+.schedule-event-body .event-description {
+    border: 2px solid;
+    padding: 5px;
+    border-radius: 6px
+}
+.schedule-event-body .event-description textarea {
+    border: none;
+}
+.schedule-event-body .event-description label:after {
+    background: none;
+}
+
+.schedule-event-body .event-repeat-on .mt-checkbox-inline {
+    padding: 5px 0
+}
+.schedule-event-body label.schedule-check-box {
+    margin-bottom: 0;
+}
+.schedule-event-body .event-image {
+    width: auto;
+    height: 100px;
+    border: 2px solid #e1e5ec;
+    background: #FAFAFA;
+    border-radius: 3px;
+    float: left;
+    margin-right: 10px;
+    margin-bottom: 5px;
+    position: relative;
+}
+.schedule-event-body .event-image img {
+    width: auto;
+    height: 100%;
+}
+.schedule-event-body .event-image .image-overlay {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 5px;
+}
+.schedule-event-body .event-image .image-overlay i {
+    cursor: pointer;
+    padding: 5px;
+    background: #d7d7d7;
+    border-radius: 50%;
+}
+.schedule-event-body .event-image.add-more img {
+    opacity: 0.2;
+    margin: 5px;
+    height: calc(100% - 10px);
+    cursor: pointer;
+}
+.schedule-event-body .address-suggestion {
+    top: 57px;
+    width: 100%;
+}
+.schedule-event-body .address-suggestion .feeds li .col1>.cont {
+    width: 100%;
+}

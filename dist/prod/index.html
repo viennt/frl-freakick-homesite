@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Freakick</title>
+  <meta name="title" content="Freakick"/>
+  <meta name="description" content="Be local anywhere you go!"/>
+  <link href="assets/images/logo.png" type="image/x-icon" rel="shortcut icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Progressive Web App config -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#101010"/>
+  <meta name="mobile-web-app-capable" content="yes">
+
+  <!-- Progressive Web App for Safari config -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Freakick">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="assets/icons/apple-touch-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon-180x180.png">
+  <!--<link rel="apple-touch-startup-image" href="assets/icons/launch.jpg">-->
+
+  <meta property="og:title" content="Freakick"/>
+  <meta property="og:description" content="Be local anywhere you go!"/>
+  <meta property="og:url" content="https://www.freakick.com/"/>
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:image" content="https://www.freakick.com/assets/images/social-page/street-soccer.png"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="Freakick"/>
+  <meta property="fb:app_id" content="1273314316057451" />
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+  <link href="css/ng2-select.css" rel="stylesheet">
+  <link href="css/animate.min.css" rel="stylesheet">
+  <link href="css/daterangepicker.css" rel="stylesheet">
+
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-97244473-1', 'auto');
+  </script>
+
+  <!-- inject:css -->
+  <link rel="stylesheet" href="/css/main.css?1536229225333">
+  <!-- endinject -->
+</head>
+<body class="page-container-bg-solid page-sidebar-closed-hide-logo page-boxed page-header-fixed page-sidebar-fixed">
+
+  <sd-app>
+    <style type="text/css">
+      .loading,.loading:after{left:50%;position:absolute;top:50%}.loading{height:100px;margin:-50px 0 0 -50px;width:100px;z-index:200}.loading:after{content:'';animation:rotate 1.5s infinite linear;border-radius:100%;box-shadow:2px 2px #000000;height:150px;margin:-75px 0 0 -75px;width:150px;z-index:-1}.loading img{width:100%}@keyframes rotate{0%{transform:rotateZ(0)}100%{transform:rotateZ(360deg)}}
+    </style>
+    <div class="loading"><img src="./assets/images/logo/freakick_logo_dark.png" alt=""></div>
+  </sd-app>
+
+  <script>
+  // Fixes undefined module function in SystemJS bundle
+  function module() {}
+  </script>
+
+  <!-- Custom script -->
+  <script src="js/jquery.min.js"></script>
+  <script src="js/moment.min.js"></script>
+  <script src="js/moment-timezone.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/daterangepicker.js"></script>
+  <script src="js/jquery.mb.YTPlayer.min.js"></script>
+
+  <script src="//www.paypalobjects.com/api/checkout.js"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+  <script src="//cdn.ckeditor.com/4.5.11/full/ckeditor.js"></script>
+
+  <!-- End custom script -->
+  <!-- shims:js -->
+  <!-- endinject -->
+
+  
+
+  <!-- libs:js -->
+  <!-- endinject -->
+
+  <!-- inject:js -->
+  <script src="/js/shims.js?1536229225332"></script>
+  <script src="/js/app.js?1536229225332"></script>
+  <!-- endinject -->
+
+  
+
+  <script>
+      if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function () {
+              navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
+                  // Registration was successful
+//                  console.log('ServiceWorker registration successful with scope: ', registration.scope);
+              }, function (err) {
+                  // registration failed :(
+//                  console.log('ServiceWorker registration failed: ', err);
+              });
+          });
+      }
+  </script>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '1273314316057451',
+      xfbml      : true,
+      version    : 'v3.0'
+    });
+    FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</body>
+</html>

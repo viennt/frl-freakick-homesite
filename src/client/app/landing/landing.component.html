@@ -1,0 +1,50 @@
+<section>
+    <div class="container">
+        <div class="intro-heading text-center">
+            <div class="freakick-logo">
+                <img src="./assets/images/freakick-logo.png" alt="">
+            </div>
+            <h2 class="animated fadeInDown">Feel like a <b>local anywhere</b> you go</h2>
+            <div class="secret-words animated fadeIn"
+                 [style.animation-delay]="'3s'">
+                <input id="secret-code" type="password"
+                       placeholder="What's the secret word?"
+                       [(ngModel)]="secretCode"
+                       (keyup.enter)="submitCode($event)">
+                <button id="get-freakick" class="btn"
+                        [disabled]="secretCode === initialCode || secretCode === ''"
+                        (click)="submitCode()">
+                    <i class="fa fa-spin fa-spinner" *ngIf="isLoading"></i>
+                    <span *ngIf="!isLoading">GO</span>
+                </button>
+                <span id="or-line">- or -</span>
+                <button id="contact-us" class="btn" (click)="contactForm.open()">
+                    <span>CONTACT US</span>
+                </button>
+                <div *ngIf="secretCodeMsg">{{ secretCodeMsg }}</div>
+            </div>
+            <div class="intro-app">
+                <div class="quote quote-1 animated fadeInLeft"
+                     [style.animation-duration]="'0.75s'"
+                     [style.animation-delay]="'2.15s'"></div>
+                <div class="quote quote-2 animated flipInX"
+                     [style.animation-duration]="'0.75s'"
+                     [style.animation-delay]="'2.3s'"></div>
+                <div class="phone animated fadeIn"
+                     [style.animation-delay]="'1.5s'"></div>
+                <div class="quote quote-3 animated flipInY"
+                     [style.animation-duration]="'0.75s'"
+                     [style.animation-delay]="'2.45s'"></div>
+                <div class="quote quote-4 animated fadeInRight"
+                     [style.animation-duration]="'0.75s'"
+                     [style.animation-delay]="'2.6s'"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="copy-right">
+  <div class="text">Copyright © 2018 Freakick Inc. All Rights Reserved.</div>
+</div>
+
+<frk-contact-form #contactForm></frk-contact-form>

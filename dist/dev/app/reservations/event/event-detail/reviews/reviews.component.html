@@ -1,0 +1,63 @@
+<div class="title-section color-red">
+    <i aria-hidden="true" class="fa fa-futbol-o"></i>
+    Discuss This Event
+</div>
+<article class="media animated fadeIn" *ngIf="userReview">
+    <figure class="media-left">
+        <p class="image is-64x64">
+            <img [src]="userReview.user.logo" (error)="updateUserImage(userReview.user.logo)">
+        </p>
+    </figure>
+    <div class="media-content">
+        <div class="content">
+            <p>
+                <strong>{{ userReview.user.name }}</strong>
+                <br>{{ userReview.content }}<br>
+                <small>
+                    <a (click)="editReview($event)">Edit</a> ·
+                    <a (click)="deleteReview(userReview)">Delete</a> ·
+                    {{ userReview.updateDate }}
+                </small>
+            </p>
+        </div>
+    </div>
+</article>
+<article class="media animated fadeIn" *ngFor="let review of listReviews">
+    <figure class="media-left">
+        <p class="image is-64x64">
+            <img [src]="review.user.logo" (error)="updateUserImage(review.user.logo)">
+        </p>
+    </figure>
+    <div class="media-content">
+        <div class="content">
+            <p>
+                <strong>{{ review.user.fullName }}</strong>
+                <br>{{ review.content }}<br>{{ review.updateDate }}
+            </p>
+        </div>
+    </div>
+</article>
+<article class="media" *ngIf="isShownReviewForm">
+    <figure class="media-left">
+        <p class="image is-64x64">
+            <img [src]="authenticatedUser.userImage"
+                 (error)="updateUserImage(authenticatedUser.userImage)">
+        </p>
+    </figure>
+    <div class="media-content">
+        <div class="field">
+            <p class="control has-icon has-icon-right">
+                <textarea [(ngModel)]="userComment" class="textarea" required
+                          placeholder="Add a comment..."
+                          #comment="ngModel"></textarea>
+            </p>
+        </div><br>
+        <div class="field is-grouped">
+            <p class="control">
+                <button class="button btn-xs"
+                        [disabled]="!comment.valid || comment.pristine"
+                        (click)="postComment($event)">Post comment</button>
+            </p>
+        </div>
+    </div>
+</article>

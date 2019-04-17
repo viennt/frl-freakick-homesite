@@ -1,0 +1,96 @@
+:host {
+    width: 100%;
+    display: inline-block;
+    min-height: calc(100vh - 200px);
+}
+
+.court-detail {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.court-detail.list-group-item {
+    border-radius: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    color: #787878;
+}
+
+.court-detail .court-image {
+    padding-left: 0;
+}
+
+.court-detail .thumbnail {
+    border: none;
+}
+
+.court-detail .list-group-item {
+    border: none;
+}
+
+.court-detail .list-group-item:first-child {
+    margin: 0;
+}
+
+.court-detail .court-info,
+.court-detail .court-address {
+    line-height: 1.8;
+    font-size: 90%;
+}
+
+.court-fieldSize img {
+    width: 16px;
+    vertical-align: initial;
+}
+
+.field-opening-hour .btn-opening {
+    margin: 0.2vmin;
+    background: #da3743;
+    color: #fcfcfc;
+    width: 100%;
+    height: auto;
+}
+
+.field-opening-hour .btn-opening[disabled] {
+    background-color: rgba(1, 1, 1, 0);
+    color: #101010;
+}
+
+.field-opening-hour .btn-opening.btn-auto-with {
+    width: auto;
+}
+
+.field-opening-hour .btn-opening.selected {
+    background: #00C853;
+    border-color: #00C853;
+    font-weight: bold;
+}
+
+.field-opening-hour .btn-opening:not(.selected):hover {
+    background: #e06770;
+    animation: none;
+}
+
+.field-opening-hour .btn-opening:first-child {
+    margin-left: 0;
+}
+
+.google-map .panel {
+    border-radius: 0;
+}
+
+.sebm-google-map-container {
+    height: 300px;
+}
+
+.description {
+    margin-top: 5px;
+    border-top: 1px solid #ececec;
+}
+
+.description >>> * {
+    font-size: inherit;
+    font-weight: 400;
+    color: inherit;
+}

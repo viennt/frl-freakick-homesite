@@ -1,0 +1,140 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="google-map hidden-xs" *ngIf="receivedFacilities && receivedFacilities.length">
+                <div class="panel panel-default">
+                    <div class="panel-footer no-padding">
+                        <sebm-google-map [latitude]="receivedFacilities[0].branch.coordinate.lat"
+                                         [longitude]="receivedFacilities[0].branch.coordinate.lng">
+                            <sebm-google-map-marker *ngFor="let receivedFacility of receivedFacilities; let i = index"
+                                                    [latitude]="receivedFacility.branch.coordinate.lat"
+                                                    [longitude]="receivedFacility.branch.coordinate.lng">
+                            </sebm-google-map-marker>
+                        </sebm-google-map>
+                    </div>
+                </div>
+            </div>
+            <div class="filter no-select">
+                <div class="multiple-checkbox">
+                    <div class="title color-red"><i class="fa fa-futbol-o" aria-hidden="true"></i> Sports</div>
+                    <label *ngFor="let sport of availableSports">
+                        <input type="checkbox" name="sport" checked
+                               [disabled]="filterSports.length === 1 && sport.sportId === filterSports[0].sportId"
+                               (change)="filterSportsChanged(sport, $event.target.checked)"/>
+                        <span>{{ sport.sportName }}</span>
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-8">
+        <div *ngIf="loadingResultData">
+            <frk-loading-circle></frk-loading-circle>
+        </div>
+        <div class="list-group" *ngIf="receivedFacilities && receivedFacilities.length">
+            <div *ngFor="let receivedFacility of receivedFacilities; let i = index"
+                 class="list-group-item row court-detail no-margin animated fadeIn"
+                 [style.animation-duration]="'0.75s'"
+                 [style.animation-delay]="i * 0.15 + 's'"
+                 [class.hide]="loadingResultData">
+                <div class="col-sm-3 court-image">
+                    <a class="thumbnail" [routerLink]="['/reservations/branch', receivedFacility.branch.id]">
+                        <img [src]="receivedFacility.partner.logo"
+                             (load)="facilitiesImageLoaded()"
+                             (error)="updateUrl(receivedFacility)">
+                    </a>
+                </div>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="court-info">
+                                <div class="court-info-line">
+                                    {{ i + 1 }}.
+                                    <a [routerLink]="['/reservations/branch', receivedFacility.branch.id]">
+                                        <strong>{{ receivedFacility.branch.name }}</strong>
+                                    </a>
+                                </div>
+                                <div class="court-info-line">
+                                    <span data-toggle="tooltip"
+                                          title="{{ receivedFacility.branch.rating }} stars of {{ receivedFacility.branch.countRating }} rated">
+                                      <i class="fa" *ngFor="let star of [1, 2, 3, 4, 5]"
+                                         [class.fa-star]="star <= receivedFacility.branch.rating"
+                                         [class.color-red]="star <= receivedFacility.branch.rating"
+                                         [class.fa-star-o]="star > receivedFacility.branch.rating"></i>
+                                      {{ receivedFacility.branch.countRating }} reviews
+                                    </span>
+                                </div>
+                                <div class="court-info-line">
+                                    <div class="col-sm-8 no-padding">
+                                        <span class="court-opening-hour " data-toggle="tooltip"
+                                             title="Opening hour: from {{ receivedFacility.openedTime }} to {{ receivedFacility.closedTime }}">
+                                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                                            {{ receivedFacility.openedTime }} - {{ receivedFacility.closedTime }}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-4 no-padding">
+                                        <span class="court-fieldCode" data-toggle="tooltip"
+                                             title="Field: {{ receivedFacility.fieldCode }}">
+                                            <i class="fa fa-server" aria-hidden="true"></i>
+                                            {{ receivedFacility.fieldCode }}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-8 no-padding">
+                                        <span class="court-phone" data-toggle="tooltip"
+                                             title="Phone number: {{ receivedFacility.branch.phoneNumber }}">
+                                            <i class="fa fa-volume-control-phone" aria-hidden="true"></i>
+                                            {{ receivedFacility.branch.phoneNumber }}
+                                        </span>
+                                    </div>
+                                    <div class="col-sm-4 no-padding">
+                                        <span class="court-fieldSize" data-toggle="tooltip"
+                                             title="Size: {{ receivedFacility.fieldSize }} players/team">
+                                            <img class="stadium" src="/assets/images/icons/stadium-24.png">
+                                            {{ receivedFacility.fieldSize }}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="court-address">
+                                <div class="address" data-toggle="tooltip"
+                                     title="Address: {{ receivedFacility.branch.address }}">
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    {{ receivedFacility.branch.address }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4 col-xs-offset-8">
+                            <div class="court-info-line field-opening-hour">
+                                <button class="btn btn-sm btn-opening" type="button"
+                                        (click)="onBookingFacility(receivedFacility)"> Buy a ticket </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="!loadingResultData && (receivedFacilities && !receivedFacilities.length)"
+             class="courts-result">
+            <div class="result-container">
+                <div class="no-result">
+                    There are no results found.
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+
+<div class="modal fade" id="bookingFacilityModal" tabindex="-1"
+     role="dialog" aria-labelledby="myModalLabel">
+    <div *ngIf="!selectedFacility">
+        <frk-loading-circle></frk-loading-circle>
+    </div>
+    <sd-booking-facility-ticket
+            *ngIf="selectedFacility"
+            [facility]="selectedFacility"
+    ></sd-booking-facility-ticket>
+</div>
+
+

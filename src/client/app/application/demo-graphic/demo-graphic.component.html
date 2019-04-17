@@ -1,0 +1,221 @@
+<app-layout-one-column>
+    <div page-body>
+        <aside class="widget card widget--sidebar widget-standings">
+            <div class="widget__content card__content">
+                <div class="portlet light">
+                    <div class="portlet-body form">
+                        <div class="login-content">
+                            <div class="form">
+                                <div class="form-body no-space">
+                                    <div class="mt-element-step">
+                                        <div class="row step-line">
+                                            <div class="col-sm-4 mt-step-col first"
+                                                 [class.active]="formCurrentStep === 1"
+                                                 [class.done]="formCurrentStep >= 2">
+                                                <div class="mt-step-number bg-white">1</div>
+                                                <div class="mt-step-title uppercase font-grey-cascade">Interest Sports</div>
+                                            </div>
+                                            <div class="col-sm-4 mt-step-col"
+                                                 [class.active]="formCurrentStep === 2"
+                                                 [class.done]="formCurrentStep >= 3">
+                                                <div class="mt-step-number bg-white">2</div>
+                                                <div class="mt-step-title uppercase font-grey-cascade">Profile Picture</div>
+                                            </div>
+                                            <div class="col-sm-4 mt-step-col last"
+                                                 [class.active]="formCurrentStep === 3">
+                                                <div class="mt-step-number bg-white">3</div>
+                                                <div class="mt-step-title uppercase font-grey-cascade">Profile Info</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tab-content">
+                                        <div *ngIf="availableSports" class="tab-pane "
+                                             [class.active]="formCurrentStep === 1">
+                                            <h3>Tell us what you interest</h3>
+                                            <div class="mt-actions">
+                                                <div class="row">
+                                                    <div *ngFor="let sport of availableSports"
+                                                         class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                                                        <div class="mt-action">
+                                                            <div class="mt-action-img">
+                                                                <img [src]="sport.sportIcon"> </div>
+                                                            <div class="mt-action-body">
+                                                                <div class="mt-action-row">
+                                                                    <div class="mt-action-info ">
+                                                                        <div class="mt-action-icon btn"
+                                                                             (click)="onInterestSport(sport.sportId)">
+                                                                            <i *ngIf="inputInterestSports.indexOf(sport.sportId) >= 0" class="fa fa-heart"></i>
+                                                                            <i *ngIf="inputInterestSports.indexOf(sport.sportId) < 0" class="fa fa-heart-o"></i>
+                                                                        </div>
+                                                                        <div class="mt-action-details ">
+                                                                            <span class="mt-action-author">
+                                                                                {{ sport.sportName }}
+                                                                            </span>
+                                                                            <p class="mt-action-desc">
+                                                                                {{ sport.sportName }}
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane"
+                                             [class.active]="formCurrentStep === 2">
+                                            <h3>Set your Profile Avatar and Cover</h3>
+                                            <div class="row">
+                                                <div class="col-sx-12 col-sm-4 col-md-3">
+                                                    <div class="thumbnail"
+                                                         onclick="document.getElementById('user-logo').click()">
+                                                        <img [src]="userImageTemp">
+                                                    </div>
+                                                    <input id="user-logo" class="hidden" accept="image/*" type="file"
+                                                           name="fileUpload" (change)="onChangeProfileImage($event)"/>
+                                                </div>
+                                                <div class="col-sx-12 col-sm-8 col-md-9">
+                                                    <div class="thumbnail"
+                                                         onclick="document.getElementById('user-cover').click()">
+                                                        <img [src]="userCoverTemp">
+                                                    </div>
+                                                    <input id="user-cover" class="hidden" accept="image/*" type="file"
+                                                           name="fileUpload" (change)="onChangeCoverImage($event)"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <form #profileForm="ngForm" class="tab-pane"
+                                              [class.active]="formCurrentStep === 3">
+                                            <div class="row">
+                                                <div class="col-sm-10 col-sm-offset-1">
+                                                    <h3>Fill out your Profile Info</h3>
+                                                </div>
+                                                <div class="col-sm-5 col-sm-offset-1">
+                                                    <div class="form-group form-md-line-input form-md-floating-label"
+                                                         [class.has-error]="!fullName.valid && fullName.dirty">
+                                                        <input type="text" id="full-name" class="form-control"
+                                                               [class.edited]="!!inputFullName" required
+                                                               name="fullName" #fullName="ngModel" minlength="1"
+                                                               [(ngModel)]="inputFullName">
+                                                        <label for="full-name">Full name
+                                                            <span class="required" aria-required="true"> * </span>
+                                                        </label>
+                                                        <span *ngIf="!fullName.valid && fullName.dirty"
+                                                              class="help-block">Invalid input</span>
+                                                    </div>
+                                                    <div class="form-group form-md-line-input form-md-floating-label"
+                                                         [class.has-error]="!cellPhone.valid && cellPhone.dirty">
+                                                        <input type="text" id="cell-phone" class="form-control"
+                                                               [class.edited]="!!inputCellPhone" required
+                                                               name="cellPhone" [(ngModel)]="inputCellPhone" #cellPhone="ngModel">
+                                                        <label for="cell-phone">Cell Phone
+                                                            <span class="required" aria-required="true"> * </span>
+                                                        </label>
+                                                        <span *ngIf="!cellPhone.valid && cellPhone.dirty"
+                                                              class="help-block">Invalid input</span>
+                                                    </div>
+                                                    <div class="form-group form-md-line-input form-md-floating-label">
+                                                        <input type="text" class="form-control edited" id="birthday-daterange"/>
+                                                        <label for="birthday-daterange">Birthday
+                                                            <span class="required" aria-required="true"> * </span>
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-group form-md-checkboxes">
+                                                        <label>Gender
+                                                            <span class="required" aria-required="true"> * </span>
+                                                        </label>
+                                                        <div class="md-checkbox-list">
+                                                            <div class="btn-group " data-toggle="buttons">
+                                                                <label class="btn blue btn-gender" [class.active]="inputGenderId === 1"
+                                                                       (click)="onChangeGender(1)">
+                                                                    <input type="radio" class="toggle" checked>
+                                                                    <i class="fa fa-male"></i> Male </label>
+                                                                <label class="btn red btn-gender" [class.active]="inputGenderId === 2"
+                                                                       (click)="onChangeGender(2)">
+                                                                    <input type="radio" class="toggle">
+                                                                    <i class="fa fa-female"></i> Female </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5">
+                                                    <div *ngIf="countries" class="form-group form-md-line-input form-md-floating-label">
+                                                        <select id="user-country" class="form-control edited"
+                                                                required name="userCountry"
+                                                                (change)="onChangeCountry($event.target.value)">
+                                                            <option selected disabled>Choose a country</option>
+                                                            <option *ngFor="let country of countries"
+                                                                    value="{{ country.countryId }}">
+                                                                {{ country.countryName }}</option>
+                                                        </select>
+                                                        <label for="user-country">Country
+                                                            <span class="required" aria-required="true"> * </span>
+                                                        </label>
+                                                    </div>
+                                                    <div *ngIf="states" class="form-group form-md-line-input form-md-floating-label">
+                                                        <select id="user-state" class="form-control edited"
+                                                                required name="userState"
+                                                                (change)="onChangeState($event.target.value)">
+                                                            <option selected disabled>Choose a state</option>
+                                                            <option *ngFor="let state of states"
+                                                                    value="{{ state.stateId }}">
+                                                                {{ state.stateName }}</option>
+                                                        </select>
+                                                        <label for="user-state">State
+                                                            <span class="required" aria-required="true"> * </span>
+                                                        </label>
+                                                    </div>
+                                                    <div *ngIf="cities" class="form-group form-md-line-input form-md-floating-label">
+                                                        <select id="user-city" class="form-control edited"
+                                                                required name="userState"
+                                                                (change)="onChangeCity($event.target.value)">
+                                                            <option selected disabled>Choose a city</option>
+                                                            <option *ngFor="let city of cities"
+                                                                    value="{{ city.cityId }}">
+                                                                {{ city.cityName }}</option>
+                                                        </select>
+                                                        <label for="user-city">City
+                                                            <span class="required" aria-required="true"> * </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <div class="row">
+                                        <div class="col-sm-12 pull-right">
+                                            <button type="submit" *ngIf="formCurrentStep === 1"
+                                                    [disabled]="isLoading"
+                                                    class="btn blue-chambray" (click)="continueInterestStep()">
+                                                Save & Continue
+                                                <i class="fa fa-angle-right" *ngIf="!isLoading"></i>
+                                                <i class="fa fa-spinner fa-spin" *ngIf="isLoading"></i>
+                                            </button>
+                                            <button type="submit" *ngIf="formCurrentStep === 2"
+                                                    [disabled]="!userCoverFile || !userImageFile || isLoading"
+                                                    class="btn blue-chambray" (click)="continueProfilePictureStep()">
+                                                Save & Continue
+                                                <i class="fa fa-angle-right" *ngIf="!isLoading"></i>
+                                                <i class="fa fa-spinner fa-spin" *ngIf="isLoading"></i>
+                                            </button>
+                                            <button type="submit" *ngIf="formCurrentStep === formTotalSteps"
+                                                    [disabled]="!profileForm.form.valid || isLoading"
+                                                    class="btn blue-chambray" (click)="submitProfileInfo()">
+                                                Save & Continue
+                                                <i class="fa fa-check" *ngIf="!isLoading"></i>
+                                                <i class="fa fa-spinner fa-spin" *ngIf="isLoading"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+</app-layout-one-column>

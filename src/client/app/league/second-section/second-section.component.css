@@ -1,0 +1,44 @@
+.overlay {
+    background: url(./assets/images/league-page/create.png) center center no-repeat;
+    background-size: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+section {
+    padding: 0 0 0 0;
+    display: block;
+    position: relative;
+    color: #fcfcfc;
+    background-color: transparent;
+}
+
+.league-image {
+    margin: 30px;
+    width: 80%;
+}
+
+.league-button {
+    margin: 45px;
+}
+
+@media (max-width: 767px),
+(max-device-width: 767px) {
+    .league-image {
+        margin: 0;
+        width: 100%;
+    }
+}
+
+@media (max-width: 900px),
+(max-device-width: 900px) {
+    .league-image {
+        width: 100%;
+    }
+    .league-button {
+        margin: 35px;
+    }
+}

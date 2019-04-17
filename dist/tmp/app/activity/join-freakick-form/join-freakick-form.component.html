@@ -1,0 +1,18 @@
+<modal #modal [animation]="false"
+       (onClose)="onCloseModal($event)"
+       (onDismiss)="onCloseModal($event)">
+    <modal-header>
+        <h4 class="text-center no-margin">JOIN FREAKICK</h4>
+    </modal-header>
+    <modal-body>
+        <div class="no-margin">
+            <h3 class="text-center">Thank you!</h3>
+            <p>You’ve been invited to join Freakick Family</p>
+            <p>This means you’ll be able to enjoy all the benefits of feeling like a local everywhere you go, finding experiences you'll love among the wide array of activities our users create daily. We’ve made it intuitive to find, review, and take opportunities to connect with people in your area.</p>
+            <p>Your invite code is: {{ verifyCode }}</p>
+            <p>Please download our app, or visit our website to learn more about Freakick.</p>
+            <a class="btn input-submit" [routerLink]="['/', 'activate', activeToken]"> Accept Invitation</a>
+            <a class="btn btn-link" (click)="modal.close()">No thanks</a>
+        </div>
+    </modal-body>
+</modal>

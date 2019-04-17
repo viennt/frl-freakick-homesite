@@ -1,0 +1,18 @@
+modal-body /deep/ .modal-body {
+    background: #f1f1f1;
+}
+
+.input-submit {
+    font-size: 15px;
+    letter-spacing: 0.25vmin;
+    border-radius: 5px;
+    padding: 10px 20px;
+    text-decoration: none;
+    background: #e74c3c;
+    color: #fcfcfc;
+}
+.input-submit:hover {
+    -moz-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+    -webkit-box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+    box-shadow: 0 1px 1px 1px rgba(170, 170, 170, 0.6);
+}

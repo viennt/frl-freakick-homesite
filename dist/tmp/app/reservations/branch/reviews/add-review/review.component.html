@@ -1,0 +1,29 @@
+<div class="row review-from">
+    <div class="col-sm-12"><h4>Rating</h4></div>
+    <div class="col-sm-12 rating-star">
+        <i class="fa" *ngFor="let star of [1, 2, 3, 4, 5]"
+           [class.fa-star-o]="!rateNumber || rateNumber < star"
+           [class.fa-star]="rateNumber && rateNumber >= star"
+           [class.color-red]="rateNumber && rateNumber >= star"
+           (mouseover)="rateNumber = star"
+           (mouseout)="rateNumber = userReviewStar"
+           (click)="userReviewStar = star"></i>
+    </div>
+    <div class="col-sm-12">
+        <textarea class="form-control" rows="3"
+                  [(ngModel)]="userReviewComment"
+                  placeholder="Your review (optional)"></textarea>
+    </div>
+    <div class="col-sm-12">
+        <button class="btn btn-sm btn-rating"
+                [loadingState]="submitRatingState.state"
+                [disabled]="!userReviewStar"
+                (click)="onSubmitReviewBranch($event)">
+            Post your review now
+        </button>
+        <!--<button class="btn btn-sm btn-default"-->
+                <!--(click)="onCloseReviewBranch($event)">-->
+            <!--Cancel-->
+        <!--</button>-->
+    </div>
+</div>

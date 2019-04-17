@@ -1,0 +1,122 @@
+<div *ngIf="event" class="post-grid__item col-sm-12 animated fadeIn">
+    <div class="posts__item posts__item--card posts__item--category-1 card">
+        <figure class="posts__thumb guild">
+            <div class="posts__cat">
+                    <span class="label posts__cat-label">
+                        {{ event.eventTypeName }}
+                        <span *ngIf="event.status && event.status.id === 1">
+                            <i data-toggle="tooltip" title="Personal"
+                               class="fa fa-user fa-fw"></i>
+                            Personal
+                        </span>
+                        <span *ngIf="event.status && event.status.id === 2">
+                            <i data-toggle="tooltip" title="Public"
+                               class="fa fa-globe fa-fw"></i>
+                            Public
+                        </span>
+                        <span *ngIf="event.status && event.status.id === 3">
+                            <i data-toggle="tooltip" title="Canceled"
+                               class="fa fa-remove fa-fw"></i>
+                            Canceled
+                        </span>
+                    </span>
+            </div>
+            <a><img [src]="'./assets/images/application/card-title.jpg'" alt=""></a>
+        </figure>
+        <div class="posts__inner card__content">
+            <h6 class="posts__title text-center">
+                <a [routerLink]="[{ outlets: { event: [event.id] } }]">{{ event.name }}</a>
+            </h6>
+            <div class="game-result__content posts__excerpt">
+
+                <!-- 1st Team -->
+                <div class="game-result__team game-result__team--first">
+                    <figure class="game-result__team-logo">
+                        <img [src]="event.matchup.homeTeam.teamLogo" alt="">
+                    </figure>
+                    <div class="game-result__team-info">
+                        <h5 class="game-result__team-name">{{ event.matchup.homeTeam.teamName }}</h5>
+                        <div class="game-result__team-desc">{{ event.matchup.homeTeam.city.cityName }}</div>
+                    </div>
+                </div>
+                <!-- 1st Team / End -->
+
+                <div class="game-result__score-wrap">
+                    <div *ngIf="event.matchup.matchupState.isFinished()"
+                         class="game-result__score game-result__score--lg">
+                        <span class="game-result__score-result"
+                              [class.game-result__score-result--winner]="event.matchup.isHomeWin()"
+                              [class.game-result__score-result--loser]="event.matchup.isHomeLose()">
+                            {{ event.matchup.homeScore }}
+                        </span>
+                        <span class="game-result__score-dash">-</span>
+                        <span class="game-result__score-result"
+                              [class.game-result__score-result--winner]="event.matchup.isAwayWin()"
+                              [class.game-result__score-result--loser]="event.matchup.isAwayLose()">
+                            {{ event.matchup.awayScore }}
+                        </span>
+                    </div>
+                    <div *ngIf="!event.matchup.matchupState.isFinished()"
+                         class="game-result__score">
+                        {{ event.matchup.matchupDate | date:'shortTime' }}
+                    </div>
+                </div>
+
+                <!-- 2nd Team -->
+                <div class="game-result__team game-result__team--second">
+                    <figure class="game-result__team-logo">
+                        <img [src]="event.matchup.awayTeam.teamLogo" alt="">
+                    </figure>
+                    <div class="game-result__team-info">
+                        <h5 class="game-result__team-name">{{ event.matchup.awayTeam.teamName }}</h5>
+                        <div class="game-result__team-desc">{{ event.matchup.awayTeam.city.cityName }}</div>
+                    </div>
+                </div>
+                <!-- 2nd Team / End -->
+            </div>
+            <div *ngIf="event.ageGroups && event.ageGroups.length" class="hidden-xs">
+                <div class="blog-post-desc">
+                        <span *ngFor="let group of event.ageGroups">
+                            <span class="badge badge-default uppercase bold">
+                                <i class="fa fa-circle"></i>
+                                {{ group.groupName }}
+                                </span>
+                        </span>
+                </div>
+            </div>
+            <div *ngIf="event.description" class="posts__excerpt">
+                    <span *ngIf="expandEventDescription"
+                          [innerHTML]="event.description"></span>
+                <span *ngIf="!expandEventDescription"
+                      [innerHTML]="event.description.slice(0, 150)"></span>
+                <span *ngIf="event.description.length > 150 && !expandEventDescription">...</span>
+                <a *ngIf="event.description.length > 150 && !expandEventDescription"
+                   (click)="expandEventDescription = !expandEventDescription" class="see-more">
+                    see more</a>
+            </div>
+            <div *ngIf="event.address && event.latitude && event.longitude" class="text-center">
+                <a class="font-grey-cascade"
+                   (click)="expandEventMap = !expandEventMap">
+                    <i class="icon-pointer"></i> {{ event.address }}
+                </a>
+            </div>
+            <div *ngIf="expandEventMap && event.latitude && event.longitude" class="blog-post-desc animated fadeIn">
+                <div class="event-location">
+                    <img [src]="'https://maps.googleapis.com/maps/api/staticmap?center=' + event.latitude + ',' + event.longitude + '&markers=color:red:G%7C' + event.latitude + ',' + event.longitude + '&zoom=12&size=640x160&maptype=terrain&key=AIzaSyAkdzOcR6yEpBmtHEuXxCQFYTSywnuckEI'" alt="">
+                </div>
+            </div>
+        </div>
+        <footer class="posts__footer card__footer">
+            <div *ngIf="event.createdBy" class="post-author">
+                <figure class="post-author__avatar">
+                    <img [src]="event.createdBy.userImage" alt="Post Author Avatar">
+                </figure>
+                <div class="post-author__info">
+                    <h4 class="post-author__name">{{ event.createdBy.fullName }}</h4>
+                </div>
+            </div>
+            <app-template-time-line-card-action [event]="event" class="post__meta meta">
+            </app-template-time-line-card-action>
+        </footer>
+    </div>
+</div>
